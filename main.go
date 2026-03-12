@@ -29,7 +29,7 @@ func main() {
 	}
 	defer db.Close()
 
-	if err := migrate(db); err != nil {
+	if err := initDB(db); err != nil {
 		log.Fatal(err)
 	}
 

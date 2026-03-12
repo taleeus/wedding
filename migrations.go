@@ -5,32 +5,37 @@ import (
 	"fmt"
 )
 
-var migrations = []string{
-	debugTable,
-}
+const schema = /* sql */ `
+CREATE TABLE IF NOT EXISTS debug (
+    message TEXT NOT NULL
+);
 
-func migrate(db *sql.DB) error {
+CREATE TABLE IF NOT EXISTS guest (
+    name        TEXT    NOT NULL,
+    surname     TEXT    NOT NULL,
+    answer      TEXT                CHECK (answer IN ('YES', 'NO', 'MAYBE')),
+    answered_at TEXT,
+    created_at  TEXT    NOT NULL    DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX guest_name_idx
+ON guest(LOWER(name), LOWER(surname));
+`
+
+func initDB(db *sql.DB) error {
 	tx, err := db.Begin()
 	if err != nil {
 		return fmt.Errorf("error creating transaction: %w", err)
 	}
 	defer tx.Rollback()
 
-	for i, stmt := range migrations {
-		if _, err := tx.Exec(stmt); err != nil {
-			return fmt.Errorf("error executing statement %d: %w", i, err)
-		}
+	if _, err := tx.Exec(schema); err != nil {
+		return fmt.Errorf("error executing schema statement: %w", err)
 	}
 
 	if err := tx.Commit(); err != nil {
-		return fmt.Errorf("error committing migrations: %w", err)
+		return fmt.Errorf("error committing schema tx: %w", err)
 	}
 
 	return nil
 }
-
-const debugTable = /* sql */ `
-CREATE TABLE IF NOT EXISTS debug (
-    message TEXT NOT NULL
-);
-`
