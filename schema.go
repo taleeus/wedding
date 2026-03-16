@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"time"
 )
 
 const schema = /* sql */ `
@@ -21,6 +22,22 @@ CREATE TABLE IF NOT EXISTS guest (
 CREATE UNIQUE INDEX guest_name_idx
 ON guest(LOWER(name), LOWER(surname));
 `
+
+type Answer string
+
+const (
+	AnswerYes   Answer = "YES"
+	AnswerNo    Answer = "NO"
+	AnswerMaybe Answer = "MAYBE"
+)
+
+type Guest struct {
+	ID            int
+	Name, Surname string
+	Answer        sql.Null[Answer]
+	AnsweredAt    sql.Null[time.Time]
+	CreatedAt     time.Time
+}
 
 func initDB(db *sql.DB) error {
 	tx, err := db.Begin()

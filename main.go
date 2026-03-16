@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/joho/godotenv"
 	_ "github.com/tursodatabase/libsql-client-go/libsql"
@@ -55,17 +56,35 @@ type TmplData struct {
 	Msg   string
 }
 
-func debugHandler(tmpl *template.Template, db *sql.DB) func(http.ResponseWriter, *http.Request) {
+func debugHandler(tmpl *template.Template, db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var message string
-		row := db.QueryRow("SELECT message FROM debug")
-		if err := row.Scan(&message); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+		guestIDStr := r.URL.Query().Get("g")
+		if guestIDStr == "" {
+			http.NotFound(w, r)
+			return
 		}
 
-		data := TmplData{Title: "Titolo", Msg: message}
+		guestID, err := strconv.Atoi(guestIDStr)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		guest, ok, err := FindGuest(db, guestID)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		if !ok {
+			http.NotFound(w, r)
+			return
+		}
+
+		data := TmplData{Title: "Titolo", Msg: guest.Name + " " + guest.Surname}
 		if err := tmpl.Execute(w, data); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
 	}
 }
