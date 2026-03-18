@@ -10,10 +10,10 @@ import (
 	"strconv"
 
 	"github.com/joho/godotenv"
-	_ "github.com/tursodatabase/libsql-client-go/libsql"
+	_ "github.com/tursodatabase/go-libsql"
 )
 
-var dburl = "$TURSO_DATABASE_URL?authToken=$TURSO_AUTH_TOKEN"
+var dburl = "libsql://$TURSO_DATABASE_URL?authToken=$TURSO_AUTH_TOKEN"
 
 //go:embed views
 var views embed.FS
@@ -81,7 +81,7 @@ func debugHandler(tmpl *template.Template, db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		data := TmplData{Title: "Titolo", Msg: guest.Name + " " + guest.Surname}
+		data := TmplData{Title: "We", Msg: guest.Name + " " + guest.Surname}
 		if err := tmpl.Execute(w, data); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
