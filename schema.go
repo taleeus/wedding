@@ -12,14 +12,14 @@ CREATE TABLE IF NOT EXISTS debug (
 );
 
 CREATE TABLE IF NOT EXISTS guest (
-    name        TEXT    NOT NULL,
-    surname     TEXT    NOT NULL,
-    answer      TEXT                CHECK (answer IN ('YES', 'NO', 'MAYBE')),
-    answered_at TEXT,
-    created_at  TEXT    NOT NULL    DEFAULT CURRENT_TIMESTAMP
+    name        TEXT        NOT NULL,
+    surname     TEXT        NOT NULL,
+    answer      TEXT                    CHECK (answer IN ('YES', 'NO', 'MAYBE')),
+    answered_at DATETIME,
+    created_at  DATETIME    NOT NULL    DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE UNIQUE INDEX guest_name_idx
+CREATE UNIQUE INDEX IF NOT EXISTS guest_name_idx
 ON guest(LOWER(name), LOWER(surname));
 `
 
