@@ -1,5 +1,4 @@
 tailwind_cmd := join("bin", os(), "tailwindcss")
-templui_path := `go list -m -f \{\{.Dir\}\} github.com/templui/templui`
 
 default: dev
 
@@ -16,4 +15,4 @@ templ:
     @go tool templ generate
 
 templ-watch:
-    @wgo -file=.go -file=.templ -xfile=_templ.go go tool templ generate :: go run main.go
+    @go tool wgo -file=.go -file=.templ -xfile=_templ.go go tool templ generate :: go run main.go

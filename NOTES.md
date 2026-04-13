@@ -1,8 +1,0 @@
-- Navbar?
-- Hero (names, date, place)
-- Some photos
-- Program
-- Countdown
-- Response
-  - Attending?
-  - How many guests?
