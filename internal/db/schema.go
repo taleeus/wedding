@@ -1,9 +1,8 @@
-package main
+package db
 
 import (
 	"database/sql"
 	"fmt"
-	"time"
 )
 
 const schema = /* sql */ `
@@ -23,23 +22,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS guest_name_idx
 ON guest(LOWER(name), LOWER(surname));
 `
 
-type Answer string
-
-const (
-	AnswerYes   Answer = "YES"
-	AnswerNo    Answer = "NO"
-	AnswerMaybe Answer = "MAYBE"
-)
-
-type Guest struct {
-	ID            int
-	Name, Surname string
-	Answer        sql.Null[Answer]
-	AnsweredAt    sql.Null[time.Time]
-	CreatedAt     time.Time
-}
-
-func initDB(db *sql.DB) error {
+func Migrate(db *sql.DB) error {
 	tx, err := db.Begin()
 	if err != nil {
 		return fmt.Errorf("error creating transaction: %w", err)

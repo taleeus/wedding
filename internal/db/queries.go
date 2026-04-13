@@ -1,11 +1,11 @@
-package main
+package db
 
 import (
 	"database/sql"
 	"errors"
 )
 
-const findGuest = /* sql */ `
+const findGuestByFullName = /* sql */ `
 SELECT
     rowid AS id,
     name,
@@ -14,13 +14,15 @@ SELECT
     answered_at,
     created_at
 FROM guest
-WHERE rowid = ?
+WHERE
+    LOWER(name) = ? AND
+    LOWER(surname) = ?
 `
 
-func FindGuest(db *sql.DB, id int) (Guest, bool, error) {
+func FindGuestByFullName(db *sql.DB, name, surname string) (Guest, bool, error) {
 	var guest Guest
 
-	row := db.QueryRow(findGuest, id)
+	row := db.QueryRow(findGuestByFullName, name, surname)
 	if err := row.Scan(
 		&guest.ID,
 		&guest.Name,

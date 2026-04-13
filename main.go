@@ -1,22 +1,16 @@
 package main
 
 import (
-	"database/sql"
-	"embed"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 
 	"github.com/joho/godotenv"
-	_ "github.com/tursodatabase/go-libsql"
+	"github.com/taleeus/wedding/internal/db"
+	"github.com/taleeus/wedding/internal/server"
 )
 
 var dburl = "libsql://$TURSO_DATABASE_URL?authToken=$TURSO_AUTH_TOKEN"
-
-//go:embed views
-var views embed.FS
 
 func main() {
 	err := godotenv.Load()
@@ -24,13 +18,13 @@ func main() {
 		log.Print(".env not found; using environment")
 	}
 
-	db, err := sql.Open("libsql", os.ExpandEnv(dburl))
+	conn, err := db.New(os.ExpandEnv(dburl))
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer db.Close()
+	defer conn.Close()
 
-	if err := initDB(db); err != nil {
+	if err := db.Migrate(conn); err != nil {
 		log.Fatal(err)
 	}
 
@@ -39,52 +33,8 @@ func main() {
 		port = "8080"
 	}
 
-	tmpl, err := template.ParseFS(views, "views/debug.html")
-	if err != nil {
+	log.Printf("🚀 listening on port %s", port)
+	if err := http.ListenAndServe(":"+port, server.New()); err != nil {
 		log.Fatal(err)
-	}
-	http.HandleFunc("/", debugHandler(tmpl, db))
-
-	log.Printf("running server on port %s", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal(err)
-	}
-}
-
-type TmplData struct {
-	Title string
-	Msg   string
-}
-
-func debugHandler(tmpl *template.Template, db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		guestIDStr := r.URL.Query().Get("g")
-		if guestIDStr == "" {
-			http.NotFound(w, r)
-			return
-		}
-
-		guestID, err := strconv.Atoi(guestIDStr)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-			return
-		}
-
-		guest, ok, err := FindGuest(db, guestID)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		if !ok {
-			http.NotFound(w, r)
-			return
-		}
-
-		data := TmplData{Title: "We", Msg: guest.Name + " " + guest.Surname}
-		if err := tmpl.Execute(w, data); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
 	}
 }
