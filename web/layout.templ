@@ -2,16 +2,16 @@ package web
 
 templ Layout(title string) {
 	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>{ title }</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="/static/css/style.css" rel="stylesheet">
-		<script src="/static/scripts/htmx.min.js"></script>
-	</head>
-	<body>
-		{ children... }
-	</body>
+	<html class="scroll-smooth snap-y snap-mandatory">
+		<head>
+			<title>{ title }</title>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link href="/static/css/style.css" rel="stylesheet"/>
+			<script src="/static/scripts/htmx.min.js"></script>
+		</head>
+		<body>
+			{ children... }
+		</body>
 	</html>
 }

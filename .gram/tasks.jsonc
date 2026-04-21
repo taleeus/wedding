@@ -1,0 +1,7 @@
+[
+  {
+    "label": "run :: dev",
+    "command": "just",
+    "args": ["dev"]
+  }
+]

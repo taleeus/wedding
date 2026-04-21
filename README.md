@@ -5,6 +5,12 @@
 3. Configure Git LFS
 
 ## Run the project
+Create a `.env` file from the template:
+```sh
+cp template.env .env
+```
+and fill it with the required variables.
+
 To run with both Templ and Tailwind hot-reloading:
 ```sh
 just

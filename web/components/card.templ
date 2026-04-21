@@ -1,0 +1,28 @@
+package components
+
+templ Card(id, background string) {
+	<section
+		id={ id }
+		class={
+			"bg-exotic-skin",
+			"w-screen",
+			"h-screen",
+			"p-6",
+			"snap-start",
+		}
+	>
+		<div
+			class={
+				background,
+				"size-full",
+				"rounded-4xl",
+				"flex",
+				"flex-col",
+				"items-center",
+				"justify-center",
+			}
+		>
+			{ children... }
+		</div>
+	</section>
+}
