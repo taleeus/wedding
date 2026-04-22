@@ -30,9 +30,9 @@ func Card(id, background string) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		var templ_7745c5c3_Var2 = []any{"bg-exotic-skin",
-			"w-screen",
+			"w-full",
 			"h-screen",
-			"p-6",
+			"p-[2.5vw]",
 			"snap-start",
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)

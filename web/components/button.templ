@@ -1,7 +1,22 @@
 package components
 
 templ Button() {
-	<button type="button" class="relative rounded-xl bg-cherry-oak text-old-lace font-aboreto flex flex-row whitespace-nowrap py-3 px-2 m-4 cursor-pointer hover:bg-exotic-skin">
+	<button
+		type="button"
+		class={ "relative",
+		"rounded-xl",
+		"bg-cherry-oak",
+		"text-old-lace",
+		"font-aboreto",
+		"flex",
+		"flex-row",
+		"whitespace-nowrap",
+		"p-[1vw]",
+		"m-[2vw]",
+		"cursor-pointer",
+		"transition duration-150 ease-in-out",
+		"hover:bg-exotic-skin" }
+	>
 		{ children... }
 	</button>
 }

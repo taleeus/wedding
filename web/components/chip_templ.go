@@ -33,10 +33,10 @@ func Chip(basis string) templ.Component {
 			"h-min",
 			"bg-white",
 			"rounded-xl",
-			"p-4",
-			"m-4",
+			"p-[1.5vw]",
+			"m-[1.5vw]",
 			"text-cherry-oak",
-			"text-[12px]",
+			"text-[1.5vw]",
 			"font-opensans",
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)

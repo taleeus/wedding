@@ -58,7 +58,7 @@ func Home() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<img src=\"/static/img/flower-1.svg\" class=\"absolute -top-10 right-0\"> <img src=\"/static/img/flower-2.svg\" class=\"absolute bottom-0 left-0\"><h3 class=\"text-cherry-oak text-[20px] font-aboreto\">17 OTTOBRE 2026</h3><h1 class=\"text-exotic-skin text-[96px] font-fleur-de-leah\">Angelica & Alessandro</h1><hr width=\"50%\" class=\"text-exotic-skin\"><div class=\"text-center text-cherry-oak font-pinyon text-[24px]\">Vi invitano a condividere la gioia del loro<br>matrimonio il 17 ottobre 2026.</div><hr width=\"50%\" class=\"text-exotic-skin mb-6\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<img src=\"/static/img/flower-1.svg\" class=\"size-[24vw] absolute -top-10 right-0\"> <img src=\"/static/img/flower-2.svg\" class=\"size-[24vw] absolute -bottom-8 left-0\"><h3 class=\"text-cherry-oak text-[2vw] font-aboreto\">17 OTTOBRE 2026</h3><h1 class=\"text-exotic-skin text-[10vw] font-fleur-de-leah\">Angelica & Alessandro</h1><hr width=\"50%\" class=\"text-exotic-skin mb-[0.5vw]\"><div class=\"text-center text-cherry-oak font-pinyon text-[2vw]/[2.2vw]\">Vi invitano a condividere la gioia del loro<br>matrimonio il 17 ottobre 2026.</div><hr width=\"50%\" class=\"text-exotic-skin mt-[0.5vw] mb-[2vw]\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -74,7 +74,7 @@ func Home() templ.Component {
 						}()
 					}
 					ctx = templ.InitializeContext(ctx)
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<a href=\"#rsvp\" class=\"w-full h-full absolute bottom-0 left-0 z-10\"></a> <img src=\"/static/img/icons/arrow-down.svg\" class=\"mr-2\"><div class=\"mr-2\">CONFERMA PRESENZA</div>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<a href=\"#rsvp\" class=\"w-full h-full absolute bottom-0 left-0 z-10\"></a> <img src=\"/static/img/icons/arrow-down.svg\" class=\"mr-[1vw]\"><div class=\"mr-[2vw] text-[2vw]\">CONFERMA PRESENZA</div>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -106,7 +106,7 @@ func Home() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<h2 class=\"text-exotic-skin text-[40px] mb-4 font-aboreto\">INFORMAZIONI SULL'EVENTO</h2><div class=\"w-[80%] flex\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<h2 class=\"text-exotic-skin text-[5vw] mb-[3vw] font-aboreto\">INFORMAZIONI SULL'EVENTO</h2><div class=\"w-[80%] flex\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -122,7 +122,7 @@ func Home() templ.Component {
 						}()
 					}
 					ctx = templ.InitializeContext(ctx)
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<h3 class=\"text-exotic-skin text-[24px] mb-4 font-aboreto\">QUANDO</h3>Il matrimonio inizierà alle ore 16 del 17 ottobre 2026.")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<h3 class=\"text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto\">QUANDO</h3>Il matrimonio inizierà alle ore 16 del 17 ottobre 2026.")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -144,7 +144,7 @@ func Home() templ.Component {
 						}()
 					}
 					ctx = templ.InitializeContext(ctx)
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<h3 class=\"text-exotic-skin text-[24px] mb-4 font-aboreto\">DOVE</h3>La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso Località Montalfeo, 9, 27052 Montalfeo PV")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<h3 class=\"text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto\">DOVE</h3>La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso Località Montalfeo, 9, 27052 Montalfeo PV")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -166,7 +166,7 @@ func Home() templ.Component {
 						}()
 					}
 					ctx = templ.InitializeContext(ctx)
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h3 class=\"text-exotic-skin text-[24px] mb-4 font-aboreto\">DRESS CODE</h3>Vestitevi come volete magari non di bianco grazie")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h3 class=\"text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto\">DRESS CODE</h3>Vestitevi come volete magari non di bianco grazie")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
