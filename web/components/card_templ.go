@@ -34,6 +34,7 @@ func Card(id, background string) templ.Component {
 			"h-screen",
 			"p-[2.5vw]",
 			"snap-start",
+			"relative",
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {

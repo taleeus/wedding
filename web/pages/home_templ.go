@@ -58,7 +58,7 @@ func Home() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<img src=\"/static/img/flower-1.svg\" class=\"size-[24vw] absolute -top-10 right-0\"> <img src=\"/static/img/flower-2.svg\" class=\"size-[24vw] absolute -bottom-8 left-0\"><h3 class=\"text-cherry-oak text-[2vw] font-aboreto\">17 OTTOBRE 2026</h3><h1 class=\"text-exotic-skin text-[10vw] font-fleur-de-leah\">Angelica & Alessandro</h1><hr width=\"50%\" class=\"text-exotic-skin mb-[0.5vw]\"><div class=\"text-center text-cherry-oak font-pinyon text-[2vw]/[2.2vw]\">Vi invitano a condividere la gioia del loro<br>matrimonio il 17 ottobre 2026.</div><hr width=\"50%\" class=\"text-exotic-skin mt-[0.5vw] mb-[2vw]\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<img src=\"/static/img/flower-1.svg\" class=\"size-[24vw] absolute -top-[4vw] right-0\"> <img src=\"/static/img/flower-2.svg\" class=\"size-[24vw] absolute -bottom-[3vw] left-0\"><h3 class=\"text-cherry-oak text-[2vw] font-aboreto\">17 OTTOBRE 2026</h3><h1 class=\"text-exotic-skin text-[10vw] font-fleur-de-leah\">Angelica & Alessandro</h1><hr width=\"50%\" class=\"text-exotic-skin mb-[0.5vw]\"><div class=\"text-center text-cherry-oak font-pinyon text-[2vw]/[2.2vw]\">Vi invitano a condividere la gioia del loro<br>matrimonio il 17 ottobre 2026.</div><hr width=\"50%\" class=\"text-exotic-skin mt-[0.5vw] mb-[2vw]\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -176,7 +176,7 @@ func Home() templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div><img src=\"/static/img/flower-footer.svg\" class=\"w-full absolute -bottom-[8vw] left-0\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
