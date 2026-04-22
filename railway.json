@@ -1,6 +1,10 @@
 {
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
-    "builder": "DOCKERFILE"
+    "builder": "RAILPACK",
+    "buildCommand": "CGO_ENABLED=1 go build -buildvcs=false -tags netgo -ldflags '-s -w' -o wedding ."
+  },
+  "deploy": {
+    "startCommand": "./wedding"
   }
 }
