@@ -5,12 +5,12 @@ COPY . .
 
 RUN go mod download
 
-ENV CGO_ENABLED=1 GOOS=linux
+ENV CGO_ENABLED=1 GOOS=linux GOARCH=amd64
 RUN go build -buildvcs=false -tags netgo -ldflags '-s -w' -o wedding .
 
 FROM scratch
 
 COPY --from=builder ["/build/wedding", "/"]
-EXPOSE 8080
 
+EXPOSE 8080
 ENTRYPOINT ["/wedding"]
