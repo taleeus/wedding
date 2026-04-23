@@ -8,7 +8,21 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Button(stylings ...string) templ.Component {
+type ButtonConfig struct {
+	Callback string
+	Type     string
+	Stylings []string
+}
+
+func (config ButtonConfig) ComputeType() string {
+	if config.Type == "" {
+		config.Type = "button"
+	}
+
+	return config.Type
+}
+
+func Button(config ButtonConfig, args ...any) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -40,25 +54,52 @@ func Button(stylings ...string) templ.Component {
 			"cursor-pointer",
 			"transition duration-150 ease-in-out",
 			"hover:bg-exotic-skin",
-			stylings}
+			"active:bg-cherry-oak",
+			config.Stylings}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<button type=\"button\" class=\"")
+		templ_7745c5c3_Err = templ.RenderScriptItems(ctx, templ_7745c5c3_Buffer, templ.JSFuncCall(config.Callback, args...))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<button type=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var2).String())
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(config.ComputeType())
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 1, Col: 0}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 19, Col: 29}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" onclick=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var4 templ.ComponentScript = templ.JSFuncCall(config.Callback, args...)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4.Call)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var2).String())
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 1, Col: 0}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -66,7 +107,7 @@ func Button(stylings ...string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</button>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</button>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

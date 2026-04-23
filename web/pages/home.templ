@@ -3,7 +3,10 @@ package pages
 import (
 	"github.com/taleeus/wedding/web"
 	"github.com/taleeus/wedding/web/components"
+	"strings"
 )
+
+var iban = "IT03 E032 6822 3000 5246 1053 270"
 
 templ Home() {
 	@web.Layout("Angelica & Alessandro") {
@@ -14,7 +17,7 @@ templ Home() {
 			<img src="/static/img/flower-1.svg" class="size-[24vw] absolute -top-[4vw] right-0"/>
 			<img src="/static/img/flower-2.svg" class="size-[24vw] absolute -bottom-[3vw] left-0"/>
 			<h3 class="text-cherry-oak text-[2vw] font-aboreto">17 OTTOBRE 2026</h3>
-			<h1 class="text-exotic-skin text-[10vw] font-fleur-de-leah">Angelica & Alessandro</h1>
+			<h1 class="text-exotic-skin text-[10vw] font-fleur-de-leah">Angelica <span class="inline-block align-middle text-[4vw]">&</span> Alessandro</h1>
 			<hr width="50%" class="text-exotic-skin mb-[0.5vw]"/>
 			<div class="text-center text-cherry-oak font-pinyon text-[2vw]/[2.2vw]">
 				Vi invitano a condividere la gioia del loro
@@ -22,7 +25,9 @@ templ Home() {
 				matrimonio il 17 ottobre 2026.
 			</div>
 			<hr width="50%" class="text-exotic-skin mt-[0.5vw] mb-[2vw]"/>
-			@components.Button("m-[2vw]", "p-[1vw]", "text-[2vw]") {
+			@components.Button(components.ButtonConfig{
+				Stylings: []string{"m-[2vw]", "p-[1vw]", "text-[2vw]"},
+			}) {
 				<a href="#rsvp" class="w-full h-full absolute bottom-0 left-0 z-10"></a>
 				<img src="/static/img/icons/arrow-down.svg" class="mr-[1vw] size-[3vw]"/>
 				CONFERMA PRESENZA
@@ -72,8 +77,8 @@ templ Home() {
 				<div class="basis-2/5 h-full grid grid-cols-1 place-items-stretch gap-[2vw]">
 					@components.Cell(components.CellConfig{Time: "15:00", Description: "Inizio cerimonia"})
 					@components.Cell(components.CellConfig{Time: "17:00", Description: "Aperitivo"})
-					@components.Cell(components.CellConfig{Time: "19:00", Description: "Taglio torta"})
-					@components.Cell(components.CellConfig{Time: "20:00", Description: "Cena"})
+					@components.Cell(components.CellConfig{Time: "19:00", Description: "Cena"})
+					@components.Cell(components.CellConfig{Time: "20:00", Description: "Taglio torta"})
 					@components.Cell(components.CellConfig{Time: "22:00", Description: "Festa"})
 				</div>
 			</div>
@@ -84,7 +89,8 @@ templ Home() {
 		}) {
 			<img src="/static/img/bird.svg" class="size-[12vw] absolute top-[3vw] right-[4vw]"/>
 			<div class="size-full p-[4vw]">
-				<form class="flex flex-col size-full">
+				<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+				<form id="rsvp-form" method="post" target="dummyframe" class="flex flex-col size-full">
 					<h3 class="text-exotic-skin text-[1.8vw] mb-[1vw] font-aboreto">RSVP</h3>
 					<h2 class="text-exotic-skin text-[3vw] mb-[2vw] font-aboreto">CONFERMA PARTECIPAZIONE</h2>
 					<div class="grid gap-x-[2vw] gap-y-[1.2vw] grid-cols-2">
@@ -133,7 +139,10 @@ templ Home() {
 						})
 					</div>
 					<div class="grow"></div>
-					@components.Button("p-[0.8vw]", "text-[1.2vw]", "max-w-fit") {
+					@components.Button(components.ButtonConfig{
+						Type:     "submit",
+						Stylings: []string{"p-[0.8vw]", "text-[1.2vw]", "max-w-fit"},
+					}) {
 						CONFERMA
 					}
 				</form>
@@ -143,6 +152,34 @@ templ Home() {
 			ID:         "gift",
 			Background: "bg-old-lace",
 		}) {
+			<div class="flex flex-col size-full p-[4vw] text-[1.5vw] text-exotic-skin">
+				<h3 class="text-[1.8vw] mb-[1.5vw] font-aboreto">LISTA NOZZE</h3>
+				<h2 class="text-[3vw] mb-[1.5vw] font-aboreto">IL NOSTRO VIAGGIO</h2>
+				<div class="mb-[1.5vw]">
+					Il regalo più bello è la vostra presenza. Se desiderate
+					<br/>
+					contribuire al nostro viaggio di nozze in Giappone, potete farlo
+					<br/>
+					tramite bonifico bancario.
+				</div>
+				<h4 class="text-[1.8vw] mb-[1vw]">COORDINATE BANCARIE</h4>
+				<div class="p-[2vw] bg-white w-[45vw] rounded-md mb-[1vw]">
+					<h5 class="text-[1.8vw] mb-[1vw]">IBAN</h5>
+					<div class="text-black font-medium mb-[1vw]">{ iban }</div>
+					<div class="text-[1.5vw]">Intestato ad Alessandro Tagliani o Angelica Seiberl</div>
+				</div>
+				<h4 class="text-[1.8vw] mb-[0.3vw]">CAUSALE</h4>
+				<div class="font-semibold">"Matrimonio Angi e Ale"</div>
+				<div class="grow"></div>
+				@components.Button(components.ButtonConfig{
+					Callback: "navigator.clipboard.writeText",
+					Stylings: []string{"p-[0.8vw]", "text-[1.2vw]", "max-w-fit"},
+				}, strings.ReplaceAll(iban, " ", "")) {
+					<img src="/static/img/icons/copy.svg" class="mr-[1vw] size-[1.8vw]"/>
+					COPIA IBAN
+				}
+			</div>
+			<img src="/static/img/japan-1.svg" class="size-[48vw] absolute top-[6vw] right-[2vw]"/>
 		}
 	}
 }

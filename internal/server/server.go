@@ -11,6 +11,8 @@ import (
 func New() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.Handle("GET /", templ.Handler(pages.Home()))
+	mux.HandleFunc("POST /", SaveGuestResponse)
+
 	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServerFS(static.Assets)))
 
 	return mux

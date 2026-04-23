@@ -1,8 +1,23 @@
 package components
 
-templ Button(stylings ...string) {
+type ButtonConfig struct {
+	Callback string
+	Type     string
+	Stylings []string
+}
+
+func (config ButtonConfig) ComputeType() string {
+	if config.Type == "" {
+		config.Type = "button"
+	}
+
+	return config.Type
+}
+
+templ Button(config ButtonConfig, args ...any) {
 	<button
-		type="button"
+		type={ config.ComputeType() }
+		onclick={ templ.JSFuncCall(config.Callback, args...) }
 		class={ "relative",
 		"rounded-xl",
 		"bg-cherry-oak",
@@ -14,7 +29,8 @@ templ Button(stylings ...string) {
 		"cursor-pointer",
 		"transition duration-150 ease-in-out",
 		"hover:bg-exotic-skin",
-		stylings }
+		"active:bg-cherry-oak",
+		config.Stylings }
 	>
 		{ children... }
 	</button>

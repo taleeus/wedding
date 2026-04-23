@@ -118,7 +118,8 @@ func FormField(config FormFieldConfig) templ.Component {
 			"outline-bold-grey",
 			"focus:outline-2",
 			"focus:-outline-offset-2",
-			"focus:outline-exotic-skin"}
+			"focus:outline-exotic-skin",
+			"transition duration-150 ease-in-out"}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var6...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

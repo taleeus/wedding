@@ -11,7 +11,10 @@ import templruntime "github.com/a-h/templ/runtime"
 import (
 	"github.com/taleeus/wedding/web"
 	"github.com/taleeus/wedding/web/components"
+	"strings"
 )
+
+var iban = "IT03 E032 6822 3000 5246 1053 270"
 
 func Home() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -58,7 +61,7 @@ func Home() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<img src=\"/static/img/flower-1.svg\" class=\"size-[24vw] absolute -top-[4vw] right-0\"> <img src=\"/static/img/flower-2.svg\" class=\"size-[24vw] absolute -bottom-[3vw] left-0\"><h3 class=\"text-cherry-oak text-[2vw] font-aboreto\">17 OTTOBRE 2026</h3><h1 class=\"text-exotic-skin text-[10vw] font-fleur-de-leah\">Angelica & Alessandro</h1><hr width=\"50%\" class=\"text-exotic-skin mb-[0.5vw]\"><div class=\"text-center text-cherry-oak font-pinyon text-[2vw]/[2.2vw]\">Vi invitano a condividere la gioia del loro<br>matrimonio il 17 ottobre 2026.</div><hr width=\"50%\" class=\"text-exotic-skin mt-[0.5vw] mb-[2vw]\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<img src=\"/static/img/flower-1.svg\" class=\"size-[24vw] absolute -top-[4vw] right-0\"> <img src=\"/static/img/flower-2.svg\" class=\"size-[24vw] absolute -bottom-[3vw] left-0\"><h3 class=\"text-cherry-oak text-[2vw] font-aboreto\">17 OTTOBRE 2026</h3><h1 class=\"text-exotic-skin text-[10vw] font-fleur-de-leah\">Angelica <span class=\"inline-block align-middle text-[4vw]\">&</span> Alessandro</h1><hr width=\"50%\" class=\"text-exotic-skin mb-[0.5vw]\"><div class=\"text-center text-cherry-oak font-pinyon text-[2vw]/[2.2vw]\">Vi invitano a condividere la gioia del loro<br>matrimonio il 17 ottobre 2026.</div><hr width=\"50%\" class=\"text-exotic-skin mt-[0.5vw] mb-[2vw]\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -80,7 +83,9 @@ func Home() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = components.Button("m-[2vw]", "p-[1vw]", "text-[2vw]").Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Button(components.ButtonConfig{
+					Stylings: []string{"m-[2vw]", "p-[1vw]", "text-[2vw]"},
+				}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -229,11 +234,11 @@ func Home() templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "19:00", Description: "Taglio torta"}).Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "19:00", Description: "Cena"}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "20:00", Description: "Cena"}).Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "20:00", Description: "Taglio torta"}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -270,7 +275,7 @@ func Home() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<img src=\"/static/img/bird.svg\" class=\"size-[12vw] absolute top-[3vw] right-[4vw]\"><div class=\"size-full p-[4vw]\"><form class=\"flex flex-col size-full\"><h3 class=\"text-exotic-skin text-[1.8vw] mb-[1vw] font-aboreto\">RSVP</h3><h2 class=\"text-exotic-skin text-[3vw] mb-[2vw] font-aboreto\">CONFERMA PARTECIPAZIONE</h2><div class=\"grid gap-x-[2vw] gap-y-[1.2vw] grid-cols-2\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<img src=\"/static/img/bird.svg\" class=\"size-[12vw] absolute top-[3vw] right-[4vw]\"><div class=\"size-full p-[4vw]\"><iframe name=\"dummyframe\" id=\"dummyframe\" style=\"display: none;\"></iframe><form id=\"rsvp-form\" method=\"post\" target=\"dummyframe\" class=\"flex flex-col size-full\"><h3 class=\"text-exotic-skin text-[1.8vw] mb-[1vw] font-aboreto\">RSVP</h3><h2 class=\"text-exotic-skin text-[3vw] mb-[2vw] font-aboreto\">CONFERMA PARTECIPAZIONE</h2><div class=\"grid gap-x-[2vw] gap-y-[1.2vw] grid-cols-2\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -357,7 +362,10 @@ func Home() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = components.Button("p-[0.8vw]", "text-[1.2vw]", "max-w-fit").Render(templ.WithChildren(ctx, templ_7745c5c3_Var11), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Button(components.ButtonConfig{
+					Type:     "submit",
+					Stylings: []string{"p-[0.8vw]", "text-[1.2vw]", "max-w-fit"},
+				}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var11), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -390,6 +398,52 @@ func Home() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<div class=\"flex flex-col size-full p-[4vw] text-[1.5vw] text-exotic-skin\"><h3 class=\"text-[1.8vw] mb-[1.5vw] font-aboreto\">LISTA NOZZE</h3><h2 class=\"text-[3vw] mb-[1.5vw] font-aboreto\">IL NOSTRO VIAGGIO</h2><div class=\"mb-[1.5vw]\">Il regalo più bello è la vostra presenza. Se desiderate<br>contribuire al nostro viaggio di nozze in Giappone, potete farlo<br>tramite bonifico bancario.</div><h4 class=\"text-[1.8vw] mb-[1vw]\">COORDINATE BANCARIE</h4><div class=\"p-[2vw] bg-white w-[45vw] rounded-md mb-[1vw]\"><h5 class=\"text-[1.8vw] mb-[1vw]\">IBAN</h5><div class=\"text-black font-medium mb-[1vw]\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var13 string
+				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(iban)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 168, Col: 56}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div><div class=\"text-[1.5vw]\">Intestato ad Alessandro Tagliani o Angelica Seiberl</div></div><h4 class=\"text-[1.8vw] mb-[0.3vw]\">CAUSALE</h4><div class=\"font-semibold\">\"Matrimonio Angi e Ale\"</div><div class=\"grow\"></div>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Var14 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+					templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+					templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+					if !templ_7745c5c3_IsBuffer {
+						defer func() {
+							templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+							if templ_7745c5c3_Err == nil {
+								templ_7745c5c3_Err = templ_7745c5c3_BufErr
+							}
+						}()
+					}
+					ctx = templ.InitializeContext(ctx)
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<img src=\"/static/img/icons/copy.svg\" class=\"mr-[1vw] size-[1.8vw]\"> COPIA IBAN")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					return nil
+				})
+				templ_7745c5c3_Err = components.Button(components.ButtonConfig{
+					Callback: "navigator.clipboard.writeText",
+					Stylings: []string{"p-[0.8vw]", "text-[1.2vw]", "max-w-fit"},
+				}, strings.ReplaceAll(iban, " ", "")).Render(templ.WithChildren(ctx, templ_7745c5c3_Var14), templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</div><img src=\"/static/img/japan-1.svg\" class=\"size-[48vw] absolute top-[6vw] right-[2vw]\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
 				return nil
 			})
 			templ_7745c5c3_Err = components.Card(components.CardConfig{
