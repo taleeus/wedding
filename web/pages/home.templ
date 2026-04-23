@@ -28,15 +28,18 @@ templ Home() {
 		@components.Card("info", "bg-old-lace") {
 			<h2 class="text-exotic-skin text-[5vw] mb-[3vw] font-aboreto">INFORMAZIONI SULL'EVENTO</h2>
 			<div class="w-[80%] flex">
-				@components.Chip("basis-1/3") {
+				@components.Chip("bg-white", "basis-1/3") {
 					<h3 class="text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto">QUANDO</h3>
-					Il matrimonio inizierà alle ore 16 del 17 ottobre 2026.
+					Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.
 				}
-				@components.Chip("basis-1/3") {
+				@components.Chip("bg-white", "basis-1/3") {
 					<h3 class="text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto">DOVE</h3>
-					La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso Località Montalfeo, 9, 27052 Montalfeo PV
+					La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
+					<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
+						Località Montalfeo, 9, 27052 Montalfeo PV
+					</a>
 				}
-				@components.Chip("basis-1/3") {
+				@components.Chip("bg-white", "basis-1/3") {
 					<h3 class="text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto">DRESS CODE</h3>
 					Vestitevi come volete magari non di bianco grazie
 				}
@@ -44,6 +47,18 @@ templ Home() {
 			<img src="/static/img/flower-footer.svg" class="w-full absolute -bottom-[8vw] left-0"/>
 		}
 		@components.Card("timeline", "bg-exotic-skin") {
+			<div class="size-full px-[6vw] py-[5vw] flex items-center">
+				<span class="basis-3/5 flex items-center">
+					<h2 class="text-old-lace text-[5vw] font-aboreto">TIMELINE</h2>
+				</span>
+				<div class="basis-2/5 h-full grid grid-cols-1 place-items-stretch gap-[2vw]">
+					@components.Cell("15:00", "Inizio cerimonia")
+					@components.Cell("17:00", "Aperitivo")
+					@components.Cell("19:00", "Taglio torta")
+					@components.Cell("20:00", "Cena")
+					@components.Cell("22:00", "Festa")
+				</div>
+			</div>
 		}
 		@components.Card("rsvp", "bg-old-lace") {
 		}

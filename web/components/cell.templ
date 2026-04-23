@@ -1,0 +1,21 @@
+package components
+
+templ Cell(time, description string) {
+	<div
+		class={
+			"bg-old-lace",
+			"rounded-xl",
+			"text-cherry-oak",
+			"text-[1.5vw]",
+			"p-[1.5vw]",
+			"font-opensans",
+		}
+	>
+		<div class="flex flex-row items-center h-full">
+			<span class="h-full flex items-center  basis-1/3 border-r-[0.15vw] border-exotic-skin mr-[2vw]">
+				<h3 class="text-exotic-skin text-[3vw] font-aboreto">{ time }</h3>
+			</span>
+			<span>{ description }</span>
+		</div>
+	</div>
+}
