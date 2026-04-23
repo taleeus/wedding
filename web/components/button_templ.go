@@ -8,7 +8,7 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Button() templ.Component {
+func Button(stylings ...string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -37,11 +37,10 @@ func Button() templ.Component {
 			"flex",
 			"flex-row",
 			"whitespace-nowrap",
-			"p-[1vw]",
-			"m-[2vw]",
 			"cursor-pointer",
 			"transition duration-150 ease-in-out",
-			"hover:bg-exotic-skin"}
+			"hover:bg-exotic-skin",
+			stylings}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

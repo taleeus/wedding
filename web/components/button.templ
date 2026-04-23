@@ -1,6 +1,6 @@
 package components
 
-templ Button() {
+templ Button(stylings ...string) {
 	<button
 		type="button"
 		class={ "relative",
@@ -11,11 +11,10 @@ templ Button() {
 		"flex",
 		"flex-row",
 		"whitespace-nowrap",
-		"p-[1vw]",
-		"m-[2vw]",
 		"cursor-pointer",
 		"transition duration-150 ease-in-out",
-		"hover:bg-exotic-skin" }
+		"hover:bg-exotic-skin",
+		stylings }
 	>
 		{ children... }
 	</button>

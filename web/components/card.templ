@@ -1,8 +1,13 @@
 package components
 
-templ Card(id, background string) {
+type CardConfig struct {
+	ID         string
+	Background string
+}
+
+templ Card(config CardConfig) {
 	<section
-		id={ id }
+		id={ config.ID }
 		class={
 			"bg-exotic-skin",
 			"w-full",
@@ -14,7 +19,7 @@ templ Card(id, background string) {
 	>
 		<div
 			class={
-				background,
+				config.Background,
 				"size-full",
 				"rounded-4xl",
 				"flex",

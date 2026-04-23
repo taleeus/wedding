@@ -1,0 +1,58 @@
+package components
+
+import "fmt"
+
+type FormFieldConfig struct {
+	ColSpan      int
+	ID           string
+	Label        string
+	Mandatory    bool
+	Type         string
+	Autocomplete string
+	Placeholder  string
+}
+
+func (config FormFieldConfig) ComputeSpan() string {
+	if config.ColSpan == 0 {
+		return "col-span-full"
+	}
+
+	return fmt.Sprintf("col-span-%d", config.ColSpan)
+}
+
+func (config FormFieldConfig) ComputeLabel() string {
+	if config.Mandatory {
+		config.Label += "*"
+	}
+
+	return config.Label
+}
+
+templ FormField(config FormFieldConfig) {
+	<div class={ config.ComputeSpan() }>
+		<label for={ config.ID } class="block text-[1vw] text-label-text uppercase">{ config.ComputeLabel() }</label>
+		<div class="mt-2">
+			<input
+				id={ config.ID }
+				type={ config.Type }
+				name={ config.ID }
+				autocomplete={ config.Autocomplete }
+				placeholder={ config.Placeholder }
+				class={ "block",
+				"w-full",
+				"rounded-md",
+				"bg-white",
+				"p-[1vw]",
+				"text-[1.2vw]",
+				"text-black",
+				"placeholder:text-label-text",
+				"outline-1",
+				"-outline-offset-1",
+				"outline-bold-grey",
+				"focus:outline-2",
+				"focus:-outline-offset-2",
+				"focus:outline-exotic-skin" }
+			/>
+		</div>
+	</div>
+}

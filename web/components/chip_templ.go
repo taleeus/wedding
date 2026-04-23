@@ -8,7 +8,12 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Chip(background, basis string) templ.Component {
+type ChipConfig struct {
+	Background string
+	Basis      string
+}
+
+func Chip(config ChipConfig) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,8 +34,8 @@ func Chip(background, basis string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{background,
-			basis,
+		var templ_7745c5c3_Var2 = []any{config.Background,
+			config.Basis,
 			"h-min",
 			"rounded-xl",
 			"p-[1.5vw]",

@@ -74,19 +74,22 @@ func Home() templ.Component {
 						}()
 					}
 					ctx = templ.InitializeContext(ctx)
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<a href=\"#rsvp\" class=\"w-full h-full absolute bottom-0 left-0 z-10\"></a> <img src=\"/static/img/icons/arrow-down.svg\" class=\"mr-[1vw]\"><div class=\"mr-[2vw] text-[2vw]\">CONFERMA PRESENZA</div>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<a href=\"#rsvp\" class=\"w-full h-full absolute bottom-0 left-0 z-10\"></a> <img src=\"/static/img/icons/arrow-down.svg\" class=\"mr-[1vw] size-[3vw]\"> CONFERMA PRESENZA")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = components.Button().Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Button("m-[2vw]", "p-[1vw]", "text-[2vw]").Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				return nil
 			})
-			templ_7745c5c3_Err = components.Card("hero", "bg-old-lace").Render(templ.WithChildren(ctx, templ_7745c5c3_Var3), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Card(components.CardConfig{
+				ID:         "hero",
+				Background: "bg-old-lace",
+			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var3), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -128,7 +131,10 @@ func Home() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = components.Chip("bg-white", "basis-1/3").Render(templ.WithChildren(ctx, templ_7745c5c3_Var6), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Chip(components.ChipConfig{
+					Background: "bg-white",
+					Basis:      "basis-1/3",
+				}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var6), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -150,7 +156,10 @@ func Home() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = components.Chip("bg-white", "basis-1/3").Render(templ.WithChildren(ctx, templ_7745c5c3_Var7), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Chip(components.ChipConfig{
+					Background: "bg-white",
+					Basis:      "basis-1/3",
+				}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var7), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -172,7 +181,10 @@ func Home() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = components.Chip("bg-white", "basis-1/3").Render(templ.WithChildren(ctx, templ_7745c5c3_Var8), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Chip(components.ChipConfig{
+					Background: "bg-white",
+					Basis:      "basis-1/3",
+				}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var8), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -182,7 +194,10 @@ func Home() templ.Component {
 				}
 				return nil
 			})
-			templ_7745c5c3_Err = components.Card("info", "bg-old-lace").Render(templ.WithChildren(ctx, templ_7745c5c3_Var5), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Card(components.CardConfig{
+				ID:         "info",
+				Background: "bg-old-lace",
+			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var5), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -206,23 +221,23 @@ func Home() templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.Cell("15:00", "Inizio cerimonia").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "15:00", Description: "Inizio cerimonia"}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.Cell("17:00", "Aperitivo").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "17:00", Description: "Aperitivo"}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.Cell("19:00", "Taglio torta").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "19:00", Description: "Taglio torta"}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.Cell("20:00", "Cena").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "20:00", Description: "Cena"}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.Cell("22:00", "Festa").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "22:00", Description: "Festa"}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -232,7 +247,10 @@ func Home() templ.Component {
 				}
 				return nil
 			})
-			templ_7745c5c3_Err = components.Card("timeline", "bg-exotic-skin").Render(templ.WithChildren(ctx, templ_7745c5c3_Var9), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Card(components.CardConfig{
+				ID:         "timeline",
+				Background: "bg-exotic-skin",
+			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var9), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -252,17 +270,115 @@ func Home() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<img src=\"/static/img/bird.svg\" class=\"size-[12vw] absolute top-[3vw] right-[4vw]\"><div class=\"size-full p-[4vw]\"><form class=\"flex flex-col size-full\"><h3 class=\"text-exotic-skin text-[1.8vw] mb-[1vw] font-aboreto\">RSVP</h3><h2 class=\"text-exotic-skin text-[3vw] mb-[2vw] font-aboreto\">CONFERMA PARTECIPAZIONE</h2><div class=\"grid gap-x-[2vw] gap-y-[1.2vw] grid-cols-2\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = components.FormField(components.FormFieldConfig{
+					ColSpan:      1,
+					ID:           "first-name",
+					Label:        "Nome",
+					Mandatory:    true,
+					Type:         "text",
+					Autocomplete: "given-name",
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = components.FormField(components.FormFieldConfig{
+					ColSpan:      1,
+					ID:           "last-name",
+					Label:        "Cognome",
+					Mandatory:    true,
+					Type:         "text",
+					Autocomplete: "family-name",
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = components.FormField(components.FormFieldConfig{
+					ID:           "phone",
+					Label:        "Telefono",
+					Mandatory:    true,
+					Type:         "tel",
+					Autocomplete: "tel",
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = components.FormField(components.FormFieldConfig{
+					ColSpan:     1,
+					ID:          "guests",
+					Label:       "Hai accompagnatori?",
+					Type:        "text",
+					Placeholder: "Lascia vuoto se vieni da solo/a",
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = components.FormField(components.FormFieldConfig{
+					ColSpan:     1,
+					ID:          "allergies",
+					Label:       "Allergie o preferenze alimentari",
+					Type:        "text",
+					Placeholder: "Es: Vegano, celiaco...",
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = components.FormField(components.FormFieldConfig{
+					ID:          "notes",
+					Label:       "Un messaggio per gli sposi",
+					Type:        "text",
+					Placeholder: "Lascia vuoto se non hai altre necessità",
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</div><div class=\"grow\"></div>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Var11 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+					templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+					templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+					if !templ_7745c5c3_IsBuffer {
+						defer func() {
+							templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+							if templ_7745c5c3_Err == nil {
+								templ_7745c5c3_Err = templ_7745c5c3_BufErr
+							}
+						}()
+					}
+					ctx = templ.InitializeContext(ctx)
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "CONFERMA")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					return nil
+				})
+				templ_7745c5c3_Err = components.Button("p-[0.8vw]", "text-[1.2vw]", "max-w-fit").Render(templ.WithChildren(ctx, templ_7745c5c3_Var11), templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</form></div>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
 				return nil
 			})
-			templ_7745c5c3_Err = components.Card("rsvp", "bg-old-lace").Render(templ.WithChildren(ctx, templ_7745c5c3_Var10), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Card(components.CardConfig{
+				ID:         "rsvp",
+				Background: "bg-old-lace",
+			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var10), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, " ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var11 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+			templ_7745c5c3_Var12 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 				if !templ_7745c5c3_IsBuffer {
@@ -276,7 +392,10 @@ func Home() templ.Component {
 				ctx = templ.InitializeContext(ctx)
 				return nil
 			})
-			templ_7745c5c3_Err = components.Card("gift", "bg-old-lace").Render(templ.WithChildren(ctx, templ_7745c5c3_Var11), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Card(components.CardConfig{
+				ID:         "gift",
+				Background: "bg-old-lace",
+			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var12), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
