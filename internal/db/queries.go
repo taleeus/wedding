@@ -1,42 +1,40 @@
 package db
 
 import (
+	"context"
 	"database/sql"
-	"errors"
 )
 
-const findGuestByFullName = /* sql */ `
-SELECT
-    rowid AS id,
-    name,
-    surname,
-    answer,
-    answered_at,
-    created_at
-FROM guest
-WHERE
-    LOWER(name) = ? AND
-    LOWER(surname) = ?
+type RSVP struct {
+	Name    string
+	Surname string
+	Phone   string
+	Guests  sql.Null[string]
+	Food    sql.Null[string]
+	Notes   sql.Null[string]
+}
+
+const insertRSVP = /* sql */ `
+INSERT INTO rsvp
+	(phone, name, surname, guests, food, notes) VALUES
+	(?, ?, ?, ?, ?, ?)
+ON CONFLICT (phone) DO UPDATE SET
+	name = excluded.name,
+	surname = excluded.surname,
+	guests = excluded.guests,
+	food = excluded.food,
+	notes = excluded.notes
 `
 
-func FindGuestByFullName(db *sql.DB, name, surname string) (Guest, bool, error) {
-	var guest Guest
+func InsertRSVP(ctx context.Context, conn *sql.DB, rsvp RSVP) error {
+	_, err := conn.ExecContext(ctx, insertRSVP,
+		rsvp.Phone,
+		rsvp.Name,
+		rsvp.Surname,
+		rsvp.Guests,
+		rsvp.Food,
+		rsvp.Notes,
+	)
 
-	row := db.QueryRow(findGuestByFullName, name, surname)
-	if err := row.Scan(
-		&guest.ID,
-		&guest.Name,
-		&guest.Surname,
-		&guest.Answer,
-		&guest.AnsweredAt,
-		&guest.CreatedAt,
-	); err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return Guest{}, false, nil
-		}
-
-		return Guest{}, false, err
-	}
-
-	return guest, true, nil
+	return err
 }

@@ -38,4 +38,27 @@
     --color-label-text: #666666;
     --color-bold-grey: #cccccc;
     --color-old-lace: #fdf5e5;
+
+    --animate-flower-fade-in: flower-fade-in 1.2s ease-in-out forwards;
+    --animate-fade-in: fade-in 1s ease-in-out forwards;
+
+    @keyframes flower-fade-in {
+        0% {
+            opacity: 0%;
+            scale: 95%;
+        }
+        100% {
+            opacity: 100%;
+            scale: 100%;
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0%;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
 }

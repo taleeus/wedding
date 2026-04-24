@@ -38,6 +38,7 @@ templ FormField(config FormFieldConfig) {
 				name={ config.ID }
 				autocomplete={ config.Autocomplete }
 				placeholder={ config.Placeholder }
+				required?={ config.Mandatory }
 				class={ "block",
 				"w-full",
 				"rounded-md",

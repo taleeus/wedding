@@ -6,24 +6,19 @@ import (
 )
 
 const schema = /* sql */ `
-CREATE TABLE IF NOT EXISTS debug (
-    message TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS guest (
+CREATE TABLE IF NOT EXISTS rsvp (
+    phone       TEXT        NOT NULL    PRIMARY KEY,
     name        TEXT        NOT NULL,
     surname     TEXT        NOT NULL,
-    answer      TEXT                    CHECK (answer IN ('YES', 'NO', 'MAYBE')),
-    answered_at DATETIME,
+    guests      TEXT,
+    food        TEXT,
+    notes       TEXT,
     created_at  DATETIME    NOT NULL    DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE UNIQUE INDEX IF NOT EXISTS guest_name_idx
-ON guest(LOWER(name), LOWER(surname));
 `
 
-func Migrate(db *sql.DB) error {
-	tx, err := db.Begin()
+func Migrate(dbconn *sql.DB) error {
+	tx, err := dbconn.Begin()
 	if err != nil {
 		return fmt.Errorf("error creating transaction: %w", err)
 	}

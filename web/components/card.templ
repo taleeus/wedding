@@ -3,11 +3,13 @@ package components
 type CardConfig struct {
 	ID         string
 	Background string
+	XShow      string
 }
 
 templ Card(config CardConfig) {
 	<section
 		id={ config.ID }
+		x-show={ config.XShow }
 		class={
 			"bg-exotic-skin",
 			"w-full",
@@ -26,6 +28,7 @@ templ Card(config CardConfig) {
 				"flex-col",
 				"items-center",
 				"justify-center",
+				"animate-fade-in",
 			}
 		>
 			{ children... }

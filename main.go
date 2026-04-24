@@ -18,13 +18,13 @@ func main() {
 		log.Print(".env not found; using environment")
 	}
 
-	conn, err := db.New(os.ExpandEnv(dburl))
+	dbconn, err := db.New(os.ExpandEnv(dburl))
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer conn.Close()
+	defer dbconn.Close()
 
-	if err := db.Migrate(conn); err != nil {
+	if err := db.Migrate(dbconn); err != nil {
 		log.Fatal(err)
 	}
 
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	log.Printf("🚀 listening on port %s", port)
-	if err := http.ListenAndServe(":"+port, server.New()); err != nil {
+	if err := http.ListenAndServe(":"+port, server.New(dbconn)); err != nil {
 		log.Fatal(err)
 	}
 }
