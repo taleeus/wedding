@@ -2,6 +2,7 @@
   {
     "label": "run :: dev",
     "command": "just",
-    "args": ["dev"]
-  }
+    "args": ["dev"],
+    "hide": "always",
+  },
 ]

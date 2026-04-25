@@ -31,7 +31,7 @@ func (config FormFieldConfig) ComputeLabel() string {
 templ FormField(config FormFieldConfig) {
 	<div class={ config.ComputeSpan() }>
 		<label for={ config.ID } class="block text-[1vw] text-label-text uppercase">{ config.ComputeLabel() }</label>
-		<div class="mt-2">
+		<div class="mt-[1vh]">
 			<input
 				id={ config.ID }
 				type={ config.Type }
@@ -43,7 +43,7 @@ templ FormField(config FormFieldConfig) {
 				"w-full",
 				"rounded-md",
 				"bg-white",
-				"p-[1vw]",
+				"p-[1.2vh]",
 				"text-[1.2vw]",
 				"text-black",
 				"placeholder:text-label-text",

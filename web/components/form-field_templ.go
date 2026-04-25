@@ -101,7 +101,7 @@ func FormField(config FormFieldConfig) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</label><div class=\"mt-2\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</label><div class=\"mt-[1vh]\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -109,7 +109,7 @@ func FormField(config FormFieldConfig) templ.Component {
 			"w-full",
 			"rounded-md",
 			"bg-white",
-			"p-[1vw]",
+			"p-[1.2vh]",
 			"text-[1.2vw]",
 			"text-black",
 			"placeholder:text-label-text",

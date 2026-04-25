@@ -24,8 +24,8 @@ templ Hero() {
 		ID:         "hero",
 		Background: "bg-old-lace",
 	}) {
-		<img src="/static/img/flower-1.svg" class="size-[24vw] absolute -top-[4vw] right-0 animate-flower-fade-in"/>
-		<img src="/static/img/flower-2.svg" class="size-[24vw] absolute -bottom-[1vw] left-0 animate-flower-fade-in"/>
+		<img src="/static/img/flower-1.svg" class="size-[24vw] absolute -top-[6vh] right-0 animate-flower-fade-in"/>
+		<img src="/static/img/flower-2.svg" class="size-[24vw] absolute -bottom-[1.5vh] left-0 animate-flower-fade-in"/>
 		<h3 class="text-cherry-oak text-[2vw] font-aboreto">17 OTTOBRE 2026</h3>
 		<h1 class="text-exotic-skin text-[10vw] font-fleur-de-leah">Angelica <span class="inline-block align-middle text-[4vw]">&</span> Alessandro</h1>
 		<hr width="50%" class="text-exotic-skin mb-[0.5vw]"/>
@@ -51,20 +51,20 @@ templ Info() {
 		ID:         "info",
 		Background: "bg-old-lace",
 	}) {
-		<h2 class="text-exotic-skin text-[5vw] mb-[3vw] font-aboreto">INFORMAZIONI SULL'EVENTO</h2>
+		<h2 class="text-exotic-skin text-[5vw] mb-[2vh] font-aboreto">INFORMAZIONI SULL'EVENTO</h2>
 		<div class="w-[80%] flex">
 			@components.Chip(components.ChipConfig{
 				Background: "bg-white",
 				Basis:      "basis-1/3",
 			}) {
-				<h3 class="text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto">QUANDO</h3>
+				<h3 class="text-exotic-skin text-[2.5vw] mb-[1.5vh] font-aboreto">QUANDO</h3>
 				Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.
 			}
 			@components.Chip(components.ChipConfig{
 				Background: "bg-white",
 				Basis:      "basis-1/3",
 			}) {
-				<h3 class="text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto">DOVE</h3>
+				<h3 class="text-exotic-skin text-[2.5vw] mb-[1.5vh] font-aboreto">DOVE</h3>
 				La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
 				<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
 					Località Montalfeo, 9, 27052 Montalfeo PV
@@ -74,7 +74,7 @@ templ Info() {
 				Background: "bg-white",
 				Basis:      "basis-1/3",
 			}) {
-				<h3 class="text-exotic-skin text-[2.5vw] mb-[2vw] font-aboreto">DRESS CODE</h3>
+				<h3 class="text-exotic-skin text-[2.5vw] mb-[1.5vw] font-aboreto">DRESS CODE</h3>
 				Vestitevi come volete magari non di bianco grazie
 			}
 		</div>
@@ -87,7 +87,7 @@ templ Timeline() {
 		ID:         "timeline",
 		Background: "bg-exotic-skin",
 	}) {
-		<div class="size-full px-[6vw] py-[5vw] flex items-center">
+		<div class="size-full px-[6vw] py-[5vh] flex items-center">
 			<span class="basis-3/5 flex items-center">
 				<h2 class="text-old-lace text-[5vw] font-aboreto">TIMELINE</h2>
 			</span>
@@ -110,9 +110,9 @@ templ RSVP() {
 		<img src="/static/img/bird.svg" class="size-[12vw] absolute top-[3vw] right-[4vw]"/>
 		<div class="size-full p-[4vw]">
 			<form id="rsvp-form" hx-post="/" hx-swap="outerHTML" hx-target="#rsvp" class="flex flex-col size-full htmx-fade-out">
-				<h3 class="text-exotic-skin text-[1.8vw] mb-[1vw] font-aboreto">RSVP</h3>
-				<h2 class="text-exotic-skin text-[3vw] mb-[2vw] font-aboreto">CONFERMA PARTECIPAZIONE</h2>
-				<div class="grid gap-x-[2vw] gap-y-[1.2vw] grid-cols-2">
+				<h3 class="text-exotic-skin text-[1.8vw] mb-[1vh] font-aboreto">RSVP</h3>
+				<h2 class="text-exotic-skin text-[3vw] mb-[2vh] font-aboreto">CONFERMA PARTECIPAZIONE</h2>
+				<div class="grid gap-x-[2vw] gap-y-[1.2vh] grid-cols-2">
 					@components.FormField(components.FormFieldConfig{
 						ColSpan:      1,
 						ID:           "name",
@@ -178,22 +178,22 @@ templ Gift() {
 		Background: "bg-old-lace",
 	}) {
 		<div class="flex flex-col size-full p-[4vw] text-[1.5vw] text-exotic-skin">
-			<h3 class="text-[1.8vw] mb-[1.5vw] font-aboreto">LISTA NOZZE</h3>
-			<h2 class="text-[3vw] mb-[1.5vw] font-aboreto">IL NOSTRO VIAGGIO</h2>
-			<div class="mb-[1.5vw]">
+			<h3 class="text-[1.8vw] mb-[1.5vh] font-aboreto">LISTA NOZZE</h3>
+			<h2 class="text-[3vw] mb-[1.5vh] font-aboreto">IL NOSTRO VIAGGIO</h2>
+			<div class="mb-[1.5vh] text-[1.4vw]/12">
 				Il regalo più bello è la vostra presenza. Se desiderate
 				<br/>
 				contribuire al nostro viaggio di nozze in Giappone, potete farlo
 				<br/>
 				tramite bonifico bancario.
 			</div>
-			<h4 class="text-[1.8vw] mb-[1vw]">COORDINATE BANCARIE</h4>
+			<h4 class="text-[1.8vw] mb-[1vh]">COORDINATE BANCARIE</h4>
 			<div class="p-[2vw] bg-white w-[45vw] rounded-md mb-[1vw]">
-				<h5 class="text-[1.8vw] mb-[1vw]">IBAN</h5>
-				<div class="text-black font-medium mb-[1vw]">{ iban }</div>
+				<h5 class="text-[1.8vw] mb-[1vh]">IBAN</h5>
+				<div class="text-black font-medium mb-[1vh]">{ iban }</div>
 				<div class="text-[1.5vw]">Intestato ad Alessandro Tagliani o Angelica Seiberl</div>
 			</div>
-			<h4 class="text-[1.8vw] mb-[0.3vw]">CAUSALE</h4>
+			<h4 class="text-[1.8vw] mb-[0.3vh]">CAUSALE</h4>
 			<div class="font-semibold">"Matrimonio Angi e Ale"</div>
 			<div class="grow"></div>
 			@components.Button(components.ButtonConfig{
@@ -204,14 +204,14 @@ templ Gift() {
 				COPIA IBAN
 			}
 		</div>
-		<img src="/static/img/japan-1.svg" class="size-[48vw] absolute top-[6vw] right-[2vw]"/>
+		<img src="/static/img/japan-1.svg" class="size-[48vw] absolute top-[6vh] right-[2vw]"/>
 	}
 }
 
 templ Footer() {
 	<section id="footer" class="bg-exotic-skin snap-end relative w-full h-[40vh] pt-[5vh] overflow-hidden">
 		<h3 class="text-old-lace text-center text-[7vw] font-fleur-de-leah">A <span class="inline-block align-middle text-[3vw]">&</span> A</h3>
-		<img src="/static/img/footer.svg" class="w-full absolute -bottom-[2vw]"/>
+		<img src="/static/img/footer.svg" class="w-full absolute -bottom-[6vh]"/>
 	</section>
 }
 
