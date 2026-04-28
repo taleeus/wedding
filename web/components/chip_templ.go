@@ -38,10 +38,15 @@ func Chip(config ChipConfig) templ.Component {
 			config.Basis,
 			"h-min",
 			"rounded-xl",
-			"p-[1.5vw]",
-			"m-[1.5vw]",
+			"py-[2.5vh]",
+			"md:py-[2vw]",
+			"px-[2vh]",
+			"md:px-[1.5vw]",
+			"m-[1vh]",
+			"md:m-[1.5vw]",
 			"text-cherry-oak",
-			"text-[1.5vw]",
+			"text-[1.5vh]",
+			"md:text-[1.5vw]",
 			"font-opensans",
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)

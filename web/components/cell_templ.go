@@ -37,8 +37,12 @@ func Cell(config CellConfig) templ.Component {
 		var templ_7745c5c3_Var2 = []any{"bg-old-lace",
 			"rounded-xl",
 			"text-cherry-oak",
-			"text-[1.5vw]",
-			"p-[1.5vw]",
+			"text-[1.5vh]",
+			"md:text-[1.5vw]",
+			"p-[1.5vh]",
+			"md:p-[1.5vw]",
+			"w-[60vw]",
+			"md:w-full",
 			"font-opensans",
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
@@ -58,27 +62,27 @@ func Cell(config CellConfig) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><div class=\"flex flex-row items-center h-full\"><span class=\"h-full flex items-center basis-1/3 border-r-[0.15vw] border-exotic-skin mr-[2vw]\"><h3 class=\"text-exotic-skin text-[3vw] font-aboreto\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><div class=\"flex flex-row items-center h-[6vh] md:h-full\"><span class=\"h-full flex items-center basis-1/3 border-r-[0.25vw] md:border-r-[0.15vw] border-exotic-skin mr-[2vw]\"><h3 class=\"text-exotic-skin text-[5vw] md:text-[3vw] font-aboreto\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(config.Time)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/cell.templ`, Line: 21, Col: 70}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/cell.templ`, Line: 25, Col: 84}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h3></span> <span>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h3></span> <span class=\"px-[4vw] md:px-0\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(config.Description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/cell.templ`, Line: 23, Col: 29}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/cell.templ`, Line: 27, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {

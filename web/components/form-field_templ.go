@@ -88,20 +88,20 @@ func FormField(config FormFieldConfig) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"block text-[1vw] text-label-text uppercase\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"block text-[1.2vh] md:text-[1vw] text-label-text uppercase\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(config.ComputeLabel())
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/form-field.templ`, Line: 33, Col: 101}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/form-field.templ`, Line: 33, Col: 117}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</label><div class=\"mt-[1vh]\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</label><div class=\"mt-[.5vh] md:mt-[1vh]\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -110,7 +110,8 @@ func FormField(config FormFieldConfig) templ.Component {
 			"rounded-md",
 			"bg-white",
 			"p-[1.2vh]",
-			"text-[1.2vw]",
+			"text-[1.5vh]",
+			"md:text-[1.2vw]",
 			"text-black",
 			"placeholder:text-label-text",
 			"outline-1",
@@ -119,7 +120,8 @@ func FormField(config FormFieldConfig) templ.Component {
 			"focus:outline-2",
 			"focus:-outline-offset-2",
 			"focus:outline-exotic-skin",
-			"transition duration-150 ease-in-out"}
+			"transition duration-150 ease-in-out",
+		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var6...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

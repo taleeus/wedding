@@ -4,5 +4,6 @@
     "command": "just",
     "args": ["dev"],
     "hide": "always",
+    "reveal": "no_focus",
   },
 ]

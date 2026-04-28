@@ -30,8 +30,8 @@ func (config FormFieldConfig) ComputeLabel() string {
 
 templ FormField(config FormFieldConfig) {
 	<div class={ config.ComputeSpan() }>
-		<label for={ config.ID } class="block text-[1vw] text-label-text uppercase">{ config.ComputeLabel() }</label>
-		<div class="mt-[1vh]">
+		<label for={ config.ID } class="block text-[1.2vh] md:text-[1vw] text-label-text uppercase">{ config.ComputeLabel() }</label>
+		<div class="mt-[.5vh] md:mt-[1vh]">
 			<input
 				id={ config.ID }
 				type={ config.Type }
@@ -39,21 +39,24 @@ templ FormField(config FormFieldConfig) {
 				autocomplete={ config.Autocomplete }
 				placeholder={ config.Placeholder }
 				required?={ config.Mandatory }
-				class={ "block",
-				"w-full",
-				"rounded-md",
-				"bg-white",
-				"p-[1.2vh]",
-				"text-[1.2vw]",
-				"text-black",
-				"placeholder:text-label-text",
-				"outline-1",
-				"-outline-offset-1",
-				"outline-bold-grey",
-				"focus:outline-2",
-				"focus:-outline-offset-2",
-				"focus:outline-exotic-skin",
-				"transition duration-150 ease-in-out" }
+				class={
+					"block",
+					"w-full",
+					"rounded-md",
+					"bg-white",
+					"p-[1.2vh]",
+					"text-[1.5vh]",
+					"md:text-[1.2vw]",
+					"text-black",
+					"placeholder:text-label-text",
+					"outline-1",
+					"-outline-offset-1",
+					"outline-bold-grey",
+					"focus:outline-2",
+					"focus:-outline-offset-2",
+					"focus:outline-exotic-skin",
+					"transition duration-150 ease-in-out",
+				}
 			/>
 		</div>
 	</div>

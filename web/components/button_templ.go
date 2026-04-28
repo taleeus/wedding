@@ -13,7 +13,6 @@ type ButtonConfig struct {
 	Type     string
 	XShow    string
 	XOnClick string
-	Stylings []string
 }
 
 func (config ButtonConfig) ComputeType() string {
@@ -52,12 +51,21 @@ func Button(config ButtonConfig, args ...any) templ.Component {
 			"font-aboreto",
 			"flex",
 			"flex-row",
+			"items-center",
 			"whitespace-nowrap",
 			"cursor-pointer",
 			"transition duration-150 ease-in-out",
 			"hover:bg-exotic-skin",
 			"active:bg-cherry-oak",
-			config.Stylings}
+			"my-[2vw]",
+			"px-[1.8vh]",
+			"lg:px-[1vw]",
+			"py-[1.3vh]",
+			"lg:py-[1vw]",
+			"text-[2vh]",
+			"lg:text-[2vw]",
+			"max-w-fit",
+		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -73,7 +81,7 @@ func Button(config ButtonConfig, args ...any) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(config.ComputeType())
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 21, Col: 29}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 20, Col: 29}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -95,7 +103,7 @@ func Button(config ButtonConfig, args ...any) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(config.XShow)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 23, Col: 23}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 22, Col: 23}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -108,7 +116,7 @@ func Button(config ButtonConfig, args ...any) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(config.XOnClick)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 24, Col: 30}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/components/button.templ`, Line: 23, Col: 30}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {

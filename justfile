@@ -1,9 +1,14 @@
+set dotenv-load := true
+
 tailwind_cmd := join("bin", os(), "tailwindcss")
 
 default: dev
 
 [parallel]
-dev: tailwind-watch templ-watch
+@dev: tailwind-watch templ-watch
+
+@kill:
+    lsof -t -i :$PORT | xargs kill -9
 
 @tailwind:
     {{ tailwind_cmd }} -i ./static/css/input.css -o ./static/css/style.css

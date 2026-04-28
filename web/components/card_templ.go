@@ -38,9 +38,11 @@ func Card(config CardConfig) templ.Component {
 		var templ_7745c5c3_Var2 = []any{"bg-exotic-skin",
 			"w-full",
 			"h-screen",
-			"p-[2.5vw]",
+			"p-[4vw]",
+			"md:p-[2.5vw]",
 			"snap-start",
 			"relative",
+			"overflow-hidden",
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
