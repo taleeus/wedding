@@ -20,7 +20,7 @@ templ Button(config ButtonConfig, args ...any) {
 		type={ config.ComputeType() }
 		onclick={ templ.JSFuncCall(config.Callback, args...) }
 		x-show={ config.XShow }
-		x-on:click={ config.XOnClick }
+		@click={ config.XOnClick }
 		class={
 			"relative",
 			"rounded-xl",

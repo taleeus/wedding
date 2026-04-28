@@ -42,7 +42,7 @@ func Layout(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link href=\"/static/css/style.css\" rel=\"stylesheet\"><script defer src=\"/static/scripts/htmx.min.js\"></script><script defer src=\"/static/scripts/alpine.min.js\"></script></head><body>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><meta property=\"og:title\" content=\"Angelica & Alessandro\"><meta property=\"og:description\" content=\"Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.\"><meta property=\"og:url\" content=\"https://angelicaealessandro.info\"><meta property=\"og:type\" content=\"website\"><meta property=\"og:image\" content=\"/static/img/banner.jpg\"><meta property=\"og:image:width\" content=\"1200\"><meta property=\"og:image:height\" content=\"600\"><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link href=\"/static/css/style.css\" rel=\"stylesheet\"><link rel=\"icon\" type=\"image/x-icon\" href=\"/static/img/icons/check.svg\"><script defer src=\"/static/scripts/htmx.min.js\"></script><script defer src=\"/static/scripts/alpine.min.js\"></script></head><body>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

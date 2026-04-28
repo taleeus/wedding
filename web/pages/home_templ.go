@@ -558,7 +558,7 @@ func Gift() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div><div class=\"text-[1.5vh] md:text-[2.5vh]\">Intestato ad Alessandro Tagliani o Angelica Seiberl</div></div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]\">CAUSALE</h4><div class=\"text-[2vh] md:text-[2.8vh] font-semibold\">\"Matrimonio Angi e Ale\"</div><div class=\"grow\"></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div><div class=\"text-[1.5vh] md:text-[2.5vh]\">Intestato ad Alessandro Tagliani o Angelica Seiberl</div></div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]\">CAUSALE</h4><div class=\"text-[2vh] md:text-[2.8vh] font-semibold\">\"Matrimonio Angi e Ale\"</div><div class=\"grow\"></div><div x-data=\"{src: '/static/img/icons/copy.svg'}\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -574,7 +574,7 @@ func Gift() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<img src=\"/static/img/icons/copy.svg\" class=\"mr-[2vw] md:mr-[1vw] md:size-[1.8vw]\"> COPIA IBAN")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<img :src=\"src\" class=\"mr-[2vw] md:mr-[1vw] md:size-[1.8vw]\"> COPIA IBAN")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -582,11 +582,12 @@ func Gift() templ.Component {
 			})
 			templ_7745c5c3_Err = components.Button(components.ButtonConfig{
 				Callback: "navigator.clipboard.writeText",
+				XOnClick: "src = '/static/img/icons/check.svg'",
 			}, strings.ReplaceAll(iban, " ", "")).Render(templ.WithChildren(ctx, templ_7745c5c3_Var19), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div><img src=\"/static/img/japan-1.svg\" class=\"size-[40vw] md:size-[90vh] absolute -scale-100 rotate-110 md:scale-100 md:rotate-0 top-[2vh] md:top-[6vh] right-0 md:right-[2vw]\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div><img src=\"/static/img/japan-1.svg\" class=\"size-[40vw] md:size-[90vh] absolute -scale-100 rotate-110 md:scale-100 md:rotate-0 top-[2vh] md:top-[6vh] right-0 md:right-[2vw]\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -672,7 +673,7 @@ func Feedback(success bool) templ.Component {
 			var templ_7745c5c3_Var23 string
 			templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(feedbackMessage(success))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 234, Col: 29}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 237, Col: 29}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 			if templ_7745c5c3_Err != nil {

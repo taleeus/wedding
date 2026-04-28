@@ -198,12 +198,15 @@ templ Gift() {
 			<h4 class="text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]">CAUSALE</h4>
 			<div class="text-[2vh] md:text-[2.8vh] font-semibold">"Matrimonio Angi e Ale"</div>
 			<div class="grow"></div>
-			@components.Button(components.ButtonConfig{
-				Callback: "navigator.clipboard.writeText",
-			}, strings.ReplaceAll(iban, " ", "")) {
-				<img src="/static/img/icons/copy.svg" class="mr-[2vw] md:mr-[1vw] md:size-[1.8vw]"/>
-				COPIA IBAN
-			}
+			<div x-data="{src: '/static/img/icons/copy.svg'}">
+				@components.Button(components.ButtonConfig{
+					Callback: "navigator.clipboard.writeText",
+					XOnClick: "src = '/static/img/icons/check.svg'",
+				}, strings.ReplaceAll(iban, " ", "")) {
+					<img :src="src" class="mr-[2vw] md:mr-[1vw] md:size-[1.8vw]"/>
+					COPIA IBAN
+				}
+			</div>
 		</div>
 		<img src="/static/img/japan-1.svg" class="size-[40vw] md:size-[90vh] absolute -scale-100 rotate-110 md:scale-100 md:rotate-0 top-[2vh] md:top-[6vh] right-0 md:right-[2vw]"/>
 	}
