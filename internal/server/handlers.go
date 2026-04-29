@@ -2,6 +2,7 @@ package server
 
 import (
 	"database/sql"
+	"log/slog"
 	"net/http"
 	"strings"
 
@@ -20,12 +21,24 @@ func SaveRSVP(w http.ResponseWriter, r *http.Request, dbconn *sql.DB) {
 	}
 
 	success := true
+	slog.InfoContext(r.Context(), "Saving response",
+		"rsvp", rsvp,
+	)
+
 	if err := db.InsertRSVP(r.Context(), dbconn, rsvp); err != nil {
+		slog.ErrorContext(r.Context(), "RSVP upserting failed",
+			"err", err.Error(),
+		)
+
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		success = false
 	}
 
 	if err := pages.Feedback(success).Render(r.Context(), w); err != nil {
+		slog.ErrorContext(r.Context(), "Feedback rendering failed",
+			"err", err.Error(),
+		)
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
