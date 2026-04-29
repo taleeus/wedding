@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -13,9 +14,14 @@ import (
 var dburl = "libsql://$TURSO_DATABASE_URL?authToken=$TURSO_AUTH_TOKEN"
 
 func main() {
+	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+		AddSource: true,
+		Level:     slog.LevelInfo,
+	})))
+
 	err := godotenv.Load()
 	if err != nil {
-		log.Print(".env not found; using environment")
+		slog.Info(".env not found; using environment")
 	}
 
 	dbconn, err := db.New(os.ExpandEnv(dburl))
@@ -33,7 +39,7 @@ func main() {
 		port = "8080"
 	}
 
-	log.Printf("🚀 listening on port %s", port)
+	slog.Info("🚀 starting server", "port", port)
 	if err := http.ListenAndServe(":"+port, server.New(dbconn)); err != nil {
 		log.Fatal(err)
 	}
