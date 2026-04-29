@@ -1,10 +1,71 @@
 package pages
 
 import (
+	"fmt"
 	"github.com/taleeus/wedding/web"
 	"github.com/taleeus/wedding/web/components"
 	"strings"
 )
+
+type HomeCopy struct {
+	HeroLabel       string
+	InfoChips       []InfoChip
+	TimelineCells   []components.CellConfig
+	GiftDescription string
+	IBAN            string
+	Feedback        FeedbackCopy
+}
+
+type InfoChip struct {
+	Title   string
+	Content string
+}
+
+type FeedbackCopy struct {
+	Success string
+	Failure string
+}
+
+var homeCopy = HomeCopy{
+	HeroLabel: "Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.",
+	InfoChips: []InfoChip{{
+		Title:   "QUANDO",
+		Content: "Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.",
+	}, {
+		Title: "DOVE",
+		Content: `La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
+		<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
+			Località Montalfeo, 9, 27052 Montalfeo PV
+		</a>`,
+	}, {
+		Title:   "DRESS CODE",
+		Content: "Vestitevi come volete magari non di bianco grazie",
+	}},
+	TimelineCells: []components.CellConfig{{
+		Time:        "15:00",
+		Description: "Inizio cerimonia",
+	}, {
+		Time:        "17:00",
+		Description: "Aperitivo",
+	}, {
+		Time:        "19:00",
+		Description: "Cena",
+	}, {
+		Time:        "20:00",
+		Description: "Taglio torta",
+	}, {
+		Time:        "22:00",
+		Description: "Festa",
+	}},
+	GiftDescription: `Il regalo più bello è la vostra presenza. Se desiderate
+	contribuire al nostro viaggio di nozze in Giappone, potete farlo
+	tramite bonifico bancario.`,
+	IBAN: "IT03 E032 6822 3000 5246 1053 270",
+	Feedback: FeedbackCopy{
+		Success: "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta",
+		Failure: "Grazie di cuore per condividere con noi un momento così importante <3",
+	},
+}
 
 templ Home() {
 	@web.Layout("Angelica & Alessandro") {
@@ -36,7 +97,7 @@ templ Hero() {
 		</div>
 		<div class="w-[85%] md:w-[50%] border-y-[0.2vh] border-exotic-skin py-[2vh] md:py-[1vh] my-[2vh] flex items-center justify-center">
 			<div class="w-full md:w-[70%] text-center text-cherry-oak font-pinyon text-[2.8vh] md:text-[2vw]/[2.2vw] text-wrap">
-				Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.
+				{ homeCopy.HeroLabel }
 			</div>
 		</div>
 		@components.Button(components.ButtonConfig{
@@ -56,29 +117,14 @@ templ Info() {
 	}) {
 		<h2 class="text-exotic-skin text-[2.5vh] md:text-[3vw] lg:text-[5vw] mb-[2vh] font-aboreto">INFORMAZIONI SULL'EVENTO</h2>
 		<div class="w-[60%] md:w-[80%] flex flex-col md:flex-row">
-			@components.Chip(components.ChipConfig{
-				Background: "bg-white",
-				Basis:      "basis-1/3",
-			}) {
-				<h3 class="text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vh] font-aboreto">QUANDO</h3>
-				Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.
-			}
-			@components.Chip(components.ChipConfig{
-				Background: "bg-white",
-				Basis:      "basis-1/3",
-			}) {
-				<h3 class="text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vh] font-aboreto">DOVE</h3>
-				La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
-				<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
-					Località Montalfeo, 9, 27052 Montalfeo PV
-				</a>
-			}
-			@components.Chip(components.ChipConfig{
-				Background: "bg-white",
-				Basis:      "basis-1/3",
-			}) {
-				<h3 class="text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vw] font-aboreto">DRESS CODE</h3>
-				Vestitevi come volete magari non di bianco grazie
+			for _, chip := range homeCopy.InfoChips {
+				@components.Chip(components.ChipConfig{
+					Background: "bg-white",
+					Basis:      fmt.Sprintf("basis-1/%d", len(homeCopy.InfoChips)),
+				}) {
+					<h3 class="text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vh] font-aboreto">{ chip.Title }</h3>
+					@templ.Raw(chip.Content)
+				}
 			}
 		</div>
 		<img src="/static/img/flower-footer.svg" class="opacity-0 md:opacity-100 w-full absolute md:-bottom-[14vw] lg:-bottom-[11vw] left-0"/>
@@ -97,11 +143,9 @@ templ Timeline() {
 				<h2 class="text-old-lace text-[2.5vh] md:text-[5vw] font-aboreto">TIMELINE</h2>
 			</span>
 			<div class="md:basis-2/5 h-fit lg:h-full grid grid-cols-1 place-items-stretch gap-[2vh]">
-				@components.Cell(components.CellConfig{Time: "15:00", Description: "Inizio cerimonia"})
-				@components.Cell(components.CellConfig{Time: "17:00", Description: "Aperitivo"})
-				@components.Cell(components.CellConfig{Time: "19:00", Description: "Cena"})
-				@components.Cell(components.CellConfig{Time: "20:00", Description: "Taglio torta"})
-				@components.Cell(components.CellConfig{Time: "22:00", Description: "Festa"})
+				for _, cell := range homeCopy.TimelineCells {
+					@components.Cell(cell)
+				}
 			</div>
 		</div>
 	}
@@ -174,8 +218,6 @@ templ RSVP() {
 	}
 }
 
-var iban = "IT03 E032 6822 3000 5246 1053 270"
-
 templ Gift() {
 	@components.Card(components.CardConfig{
 		ID:         "gift",
@@ -184,15 +226,13 @@ templ Gift() {
 		<div class="flex flex-col size-full px-[5vh] md:px-[4vw] py-[4vh] md:py-[4vw] text-[2.5vh] text-exotic-skin">
 			<h3 class="text-[1.5vh] md:text-[2.8vh] mb-[1.5vh] font-aboreto">LISTA NOZZE</h3>
 			<h2 class="text-[2.5vh] md:text-[4vh] mb-[1.5vh] font-aboreto">IL NOSTRO VIAGGIO</h2>
-			<div class="md:mb-[1.5vh] text-[2vh] md:text-[2.2vh] py-[2vh] md:py-0 md:w-[80%]">
-				Il regalo più bello è la vostra presenza. Se desiderate
-				contribuire al nostro viaggio di nozze in Giappone, potete farlo
-				tramite bonifico bancario.
+			<div class="md:mb-[1.5vh] text-[2vh] md:text-[2.2vh] py-[2vh] md:py-0 md:w-[80%] lg:w-[45vw]">
+				{ homeCopy.GiftDescription }
 			</div>
 			<h4 class="text-[2vh] md:text-[2.8vh] mb-[1vh]">COORDINATE BANCARIE</h4>
 			<div class="p-[3vh] md:p-[2vw] bg-white w-full md:w-[45vw] rounded-md mb-[2vh] md:mb-[2vw]">
 				<h5 class="text-[2vh] md:text-[2.8vh] mb-[1vh]">IBAN</h5>
-				<div class="text-[2vh] md:text-[2.5vh] text-black font-medium mb-[1vh]">{ iban }</div>
+				<div class="text-[2vh] md:text-[2.5vh] text-black font-medium mb-[1vh]">{ homeCopy.IBAN }</div>
 				<div class="text-[1.5vh] md:text-[2.5vh]">Intestato ad Alessandro Tagliani o Angelica Seiberl</div>
 			</div>
 			<h4 class="text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]">CAUSALE</h4>
@@ -202,7 +242,7 @@ templ Gift() {
 				@components.Button(components.ButtonConfig{
 					Callback: "navigator.clipboard.writeText",
 					XOnClick: "src = '/static/img/icons/check.svg'",
-				}, strings.ReplaceAll(iban, " ", "")) {
+				}, strings.ReplaceAll(homeCopy.IBAN, " ", "")) {
 					<img :src="src" class="mr-[2vw] md:mr-[1vw] md:size-[1.8vw]"/>
 					COPIA IBAN
 				}
@@ -242,8 +282,8 @@ templ Feedback(success bool) {
 
 func feedbackMessage(success bool) string {
 	if !success {
-		return "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta"
+		return homeCopy.Feedback.Failure
 	}
 
-	return "Grazie di cuore per condividere con noi un momento così importante <3"
+	return homeCopy.Feedback.Success
 }

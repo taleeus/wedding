@@ -9,10 +9,69 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
+	"fmt"
 	"github.com/taleeus/wedding/web"
 	"github.com/taleeus/wedding/web/components"
 	"strings"
 )
+
+type HomeCopy struct {
+	HeroLabel       string
+	InfoChips       []InfoChip
+	TimelineCells   []components.CellConfig
+	GiftDescription string
+	Feedback        FeedbackCopy
+}
+
+type InfoChip struct {
+	Title   string
+	Content string
+}
+
+type FeedbackCopy struct {
+	Success string
+	Failure string
+}
+
+var homeCopy = HomeCopy{
+	HeroLabel: "Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.",
+	InfoChips: []InfoChip{{
+		Title:   "QUANDO",
+		Content: "Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.",
+	}, {
+		Title: "DOVE",
+		Content: `La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
+		<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
+			Località Montalfeo, 9, 27052 Montalfeo PV
+		</a>`,
+	}, {
+		Title:   "DRESS CODE",
+		Content: "Vestitevi come volete magari non di bianco grazie",
+	}},
+	TimelineCells: []components.CellConfig{{
+		Time:        "15:00",
+		Description: "Inizio cerimonia",
+	}, {
+		Time:        "17:00",
+		Description: "Aperitivo",
+	}, {
+		Time:        "19:00",
+		Description: "Cena",
+	}, {
+		Time:        "20:00",
+		Description: "Taglio torta",
+	}, {
+		Time:        "22:00",
+		Description: "Festa",
+	}},
+	GiftDescription: `Il regalo più bello è la vostra presenza. Se desiderate
+	contribuire al nostro viaggio di nozze in Giappone, potete farlo
+	tramite bonifico bancario.`,
+	Feedback: FeedbackCopy{
+		Success: "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta",
+		Failure: "Grazie di cuore per condividere con noi un momento così importante <3",
+	},
+}
 
 func Home() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -122,11 +181,24 @@ func Hero() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<img src=\"/static/img/flower-1.svg\" class=\"size-[24vh] md:size-[20vw] absolute -top-[4vh] -right-[4vw] md:right-0 animate-flower-fade-in\"> <img src=\"/static/img/flower-2.svg\" class=\"size-[24vh] md:size-[20vw] absolute -bottom-[3vh] md:bottom-0 -left-[2vw] md:left-0 animate-flower-fade-in\"><h3 class=\"text-cherry-oak pb-[4vh] md:pb-0 text-[4vw] md:text-[2vw] font-aboreto\">17 OTTOBRE 2026</h3><div class=\"flex flex-col md:flex-row text-exotic-skin text-[20vw] md:text-[10vw] font-fleur-de-leah text-center\"><h1>Angelica</h1><div class=\"flex items-center justify-center px-0 md:px-[3vw]\"><span class=\"text-[8vw] md:text-[4vw]\">&</span></div><h1>Alessandro</h1></div><div class=\"w-[85%] md:w-[50%] border-y-[0.2vh] border-exotic-skin py-[2vh] md:py-[1vh] my-[2vh] flex items-center justify-center\"><div class=\"w-full md:w-[70%] text-center text-cherry-oak font-pinyon text-[2.8vh] md:text-[2vw]/[2.2vw] text-wrap\">Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.</div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<img src=\"/static/img/flower-1.svg\" class=\"size-[24vh] md:size-[20vw] absolute -top-[4vh] -right-[4vw] md:right-0 animate-flower-fade-in\"> <img src=\"/static/img/flower-2.svg\" class=\"size-[24vh] md:size-[20vw] absolute -bottom-[3vh] md:bottom-0 -left-[2vw] md:left-0 animate-flower-fade-in\"><h3 class=\"text-cherry-oak pb-[4vh] md:pb-0 text-[4vw] md:text-[2vw] font-aboreto\">17 OTTOBRE 2026</h3><div class=\"flex flex-col md:flex-row text-exotic-skin text-[20vw] md:text-[10vw] font-fleur-de-leah text-center\"><h1>Angelica</h1><div class=\"flex items-center justify-center px-0 md:px-[3vw]\"><span class=\"text-[8vw] md:text-[4vw]\">&</span></div><h1>Alessandro</h1></div><div class=\"w-[85%] md:w-[50%] border-y-[0.2vh] border-exotic-skin py-[2vh] md:py-[1vh] my-[2vh] flex items-center justify-center\"><div class=\"w-full md:w-[70%] text-center text-cherry-oak font-pinyon text-[2.8vh] md:text-[2vw]/[2.2vw] text-wrap\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var5 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+			var templ_7745c5c3_Var5 string
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(homeCopy.HeroLabel)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 98, Col: 24}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Var6 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 				if !templ_7745c5c3_IsBuffer {
@@ -138,7 +210,7 @@ func Hero() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<a href=\"/#rsvp\" class=\"w-full h-full absolute bottom-0 left-0 z-10\"></a> <img src=\"/static/img/icons/arrow-down.svg\" class=\"mr-[3vw] md:mr-[1vw] size-[2.5vh] lg:size-[3vw]\"> CONFERMA PRESENZA")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<a href=\"/#rsvp\" class=\"w-full h-full absolute bottom-0 left-0 z-10\"></a> <img src=\"/static/img/icons/arrow-down.svg\" class=\"mr-[3vw] md:mr-[1vw] size-[2.5vh] lg:size-[3vw]\"> CONFERMA PRESENZA")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -146,7 +218,7 @@ func Hero() templ.Component {
 			})
 			templ_7745c5c3_Err = components.Button(components.ButtonConfig{
 				XShow: "!responded",
-			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var5), templ_7745c5c3_Buffer)
+			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var6), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -179,12 +251,12 @@ func Info() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var6 == nil {
-			templ_7745c5c3_Var6 = templ.NopComponent
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Var7 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Var8 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 			if !templ_7745c5c3_IsBuffer {
@@ -196,84 +268,53 @@ func Info() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<h2 class=\"text-exotic-skin text-[2.5vh] md:text-[3vw] lg:text-[5vw] mb-[2vh] font-aboreto\">INFORMAZIONI SULL'EVENTO</h2><div class=\"w-[60%] md:w-[80%] flex flex-col md:flex-row\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<h2 class=\"text-exotic-skin text-[2.5vh] md:text-[3vw] lg:text-[5vw] mb-[2vh] font-aboreto\">INFORMAZIONI SULL'EVENTO</h2><div class=\"w-[60%] md:w-[80%] flex flex-col md:flex-row\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var8 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-				if !templ_7745c5c3_IsBuffer {
-					defer func() {
-						templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-						if templ_7745c5c3_Err == nil {
-							templ_7745c5c3_Err = templ_7745c5c3_BufErr
-						}
-					}()
-				}
-				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<h3 class=\"text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vh] font-aboreto\">QUANDO</h3>Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.")
+			for _, chip := range homeCopy.InfoChips {
+				templ_7745c5c3_Var9 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+					templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+					templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+					if !templ_7745c5c3_IsBuffer {
+						defer func() {
+							templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+							if templ_7745c5c3_Err == nil {
+								templ_7745c5c3_Err = templ_7745c5c3_BufErr
+							}
+						}()
+					}
+					ctx = templ.InitializeContext(ctx)
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h3 class=\"text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vh] font-aboreto\">")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					var templ_7745c5c3_Var10 string
+					templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(chip.Title)
+					if templ_7745c5c3_Err != nil {
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 123, Col: 99}
+					}
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</h3>")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					templ_7745c5c3_Err = templ.Raw(chip.Content).Render(ctx, templ_7745c5c3_Buffer)
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					return nil
+				})
+				templ_7745c5c3_Err = components.Chip(components.ChipConfig{
+					Background: "bg-white",
+					Basis:      fmt.Sprintf("basis-1/%d", len(homeCopy.InfoChips)),
+				}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var9), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				return nil
-			})
-			templ_7745c5c3_Err = components.Chip(components.ChipConfig{
-				Background: "bg-white",
-				Basis:      "basis-1/3",
-			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var8), templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var9 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-				if !templ_7745c5c3_IsBuffer {
-					defer func() {
-						templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-						if templ_7745c5c3_Err == nil {
-							templ_7745c5c3_Err = templ_7745c5c3_BufErr
-						}
-					}()
-				}
-				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h3 class=\"text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vh] font-aboreto\">DOVE</h3>La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso <a class=\"underline text-exotic-skin hover:text-cherry-oak\" target=\"_blank\" href=\"https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9\">Località Montalfeo, 9, 27052 Montalfeo PV</a>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				return nil
-			})
-			templ_7745c5c3_Err = components.Chip(components.ChipConfig{
-				Background: "bg-white",
-				Basis:      "basis-1/3",
-			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var9), templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var10 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-				if !templ_7745c5c3_IsBuffer {
-					defer func() {
-						templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-						if templ_7745c5c3_Err == nil {
-							templ_7745c5c3_Err = templ_7745c5c3_BufErr
-						}
-					}()
-				}
-				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<h3 class=\"text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vw] font-aboreto\">DRESS CODE</h3>Vestitevi come volete magari non di bianco grazie")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				return nil
-			})
-			templ_7745c5c3_Err = components.Chip(components.ChipConfig{
-				Background: "bg-white",
-				Basis:      "basis-1/3",
-			}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var10), templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
 			}
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div><img src=\"/static/img/flower-footer.svg\" class=\"opacity-0 md:opacity-100 w-full absolute md:-bottom-[14vw] lg:-bottom-[11vw] left-0\"> <img src=\"/static/img/flower-mobile.svg\" class=\"md:opacity-0 h-[80%] absolute -bottom-[6vh] -left-[8vh]\"> <img src=\"/static/img/flower-mobile.svg\" class=\"md:opacity-0 h-[80%] absolute -bottom-[6vh] -right-[8vh]\">")
 			if templ_7745c5c3_Err != nil {
@@ -284,7 +325,7 @@ func Info() templ.Component {
 		templ_7745c5c3_Err = components.Card(components.CardConfig{
 			ID:         "info",
 			Background: "bg-old-lace",
-		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var7), templ_7745c5c3_Buffer)
+		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var8), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -329,25 +370,11 @@ func Timeline() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "15:00", Description: "Inizio cerimonia"}).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "17:00", Description: "Aperitivo"}).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "19:00", Description: "Cena"}).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "20:00", Description: "Taglio torta"}).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = components.Cell(components.CellConfig{Time: "22:00", Description: "Festa"}).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
+			for _, cell := range homeCopy.TimelineCells {
+				templ_7745c5c3_Err = components.Cell(cell).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
 			}
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></div>")
 			if templ_7745c5c3_Err != nil {
@@ -545,24 +572,37 @@ func Gift() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<div class=\"flex flex-col size-full px-[5vh] md:px-[4vw] py-[4vh] md:py-[4vw] text-[2.5vh] text-exotic-skin\"><h3 class=\"text-[1.5vh] md:text-[2.8vh] mb-[1.5vh] font-aboreto\">LISTA NOZZE</h3><h2 class=\"text-[2.5vh] md:text-[4vh] mb-[1.5vh] font-aboreto\">IL NOSTRO VIAGGIO</h2><div class=\"md:mb-[1.5vh] text-[2vh] md:text-[2.2vh] py-[2vh] md:py-0 md:w-[80%]\">Il regalo più bello è la vostra presenza. Se desiderate contribuire al nostro viaggio di nozze in Giappone, potete farlo tramite bonifico bancario.</div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh]\">COORDINATE BANCARIE</h4><div class=\"p-[3vh] md:p-[2vw] bg-white w-full md:w-[45vw] rounded-md mb-[2vh] md:mb-[2vw]\"><h5 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh]\">IBAN</h5><div class=\"text-[2vh] md:text-[2.5vh] text-black font-medium mb-[1vh]\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<div class=\"flex flex-col size-full px-[5vh] md:px-[4vw] py-[4vh] md:py-[4vw] text-[2.5vh] text-exotic-skin\"><h3 class=\"text-[1.5vh] md:text-[2.8vh] mb-[1.5vh] font-aboreto\">LISTA NOZZE</h3><h2 class=\"text-[2.5vh] md:text-[4vh] mb-[1.5vh] font-aboreto\">IL NOSTRO VIAGGIO</h2><div class=\"md:mb-[1.5vh] text-[2vh] md:text-[2.2vh] py-[2vh] md:py-0 md:w-[80%] lg:w-[45vw]\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var18 string
-			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(iban)
+			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(homeCopy.GiftDescription)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 195, Col: 82}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 230, Col: 30}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div><div class=\"text-[1.5vh] md:text-[2.5vh]\">Intestato ad Alessandro Tagliani o Angelica Seiberl</div></div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]\">CAUSALE</h4><div class=\"text-[2vh] md:text-[2.8vh] font-semibold\">\"Matrimonio Angi e Ale\"</div><div class=\"grow\"></div><div x-data=\"{src: '/static/img/icons/copy.svg'}\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh]\">COORDINATE BANCARIE</h4><div class=\"p-[3vh] md:p-[2vw] bg-white w-full md:w-[45vw] rounded-md mb-[2vh] md:mb-[2vw]\"><h5 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh]\">IBAN</h5><div class=\"text-[2vh] md:text-[2.5vh] text-black font-medium mb-[1vh]\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var19 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+			var templ_7745c5c3_Var19 string
+			templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(iban)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 235, Col: 82}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div><div class=\"text-[1.5vh] md:text-[2.5vh]\">Intestato ad Alessandro Tagliani o Angelica Seiberl</div></div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]\">CAUSALE</h4><div class=\"text-[2vh] md:text-[2.8vh] font-semibold\">\"Matrimonio Angi e Ale\"</div><div class=\"grow\"></div><div x-data=\"{src: '/static/img/icons/copy.svg'}\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Var20 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 				if !templ_7745c5c3_IsBuffer {
@@ -574,7 +614,7 @@ func Gift() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<img :src=\"src\" class=\"mr-[2vw] md:mr-[1vw] md:size-[1.8vw]\"> COPIA IBAN")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<img :src=\"src\" class=\"mr-[2vw] md:mr-[1vw] md:size-[1.8vw]\"> COPIA IBAN")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -583,11 +623,11 @@ func Gift() templ.Component {
 			templ_7745c5c3_Err = components.Button(components.ButtonConfig{
 				Callback: "navigator.clipboard.writeText",
 				XOnClick: "src = '/static/img/icons/check.svg'",
-			}, strings.ReplaceAll(iban, " ", "")).Render(templ.WithChildren(ctx, templ_7745c5c3_Var19), templ_7745c5c3_Buffer)
+			}, strings.ReplaceAll(iban, " ", "")).Render(templ.WithChildren(ctx, templ_7745c5c3_Var20), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div><img src=\"/static/img/japan-1.svg\" class=\"size-[40vw] md:size-[90vh] absolute -scale-100 rotate-110 md:scale-100 md:rotate-0 top-[2vh] md:top-[6vh] right-0 md:right-[2vw]\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div><img src=\"/static/img/japan-1.svg\" class=\"size-[40vw] md:size-[90vh] absolute -scale-100 rotate-110 md:scale-100 md:rotate-0 top-[2vh] md:top-[6vh] right-0 md:right-[2vw]\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -620,12 +660,12 @@ func Footer() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var20 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var20 == nil {
-			templ_7745c5c3_Var20 = templ.NopComponent
+		templ_7745c5c3_Var21 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var21 == nil {
+			templ_7745c5c3_Var21 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<section id=\"footer\" class=\"bg-exotic-skin snap-end relative w-full h-[30vh] md:h-[40vh] pt-[5vh] overflow-hidden\"><h3 class=\"text-old-lace text-center text-[7vh] md:text-[7vw] font-fleur-de-leah\">A <span class=\"inline-block align-middle text-[3vw]\">&</span> A</h3><img src=\"/static/img/footer.svg\" class=\"w-full absolute bottom-0 md:-bottom-[14vh] lg:-bottom-[8vh]\"></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<section id=\"footer\" class=\"bg-exotic-skin snap-end relative w-full h-[30vh] md:h-[40vh] pt-[5vh] overflow-hidden\"><h3 class=\"text-old-lace text-center text-[7vh] md:text-[7vw] font-fleur-de-leah\">A <span class=\"inline-block align-middle text-[3vw]\">&</span> A</h3><img src=\"/static/img/footer.svg\" class=\"w-full absolute bottom-0 md:-bottom-[14vh] lg:-bottom-[8vh]\"></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -649,12 +689,12 @@ func Feedback(success bool) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var21 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var21 == nil {
-			templ_7745c5c3_Var21 = templ.NopComponent
+		templ_7745c5c3_Var22 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var22 == nil {
+			templ_7745c5c3_Var22 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Var22 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Var23 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 			if !templ_7745c5c3_IsBuffer {
@@ -666,20 +706,20 @@ func Feedback(success bool) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<div class=\"flex w-[80%] md:w-[50%]\"><div class=\"grow relative w-full\"><hr class=\"text-old-lace w-full absolute bottom-[50%]\"></div><img src=\"/static/img/bird-white.svg\" class=\"size-[30vw] md:size-[12vw] mx-[4vw] md:mx-[1vw]\"><div class=\"grow relative w-full\"><hr class=\"text-old-lace w-full absolute bottom-[50%]\"></div></div><div class=\"text-center items-center font-pinyon text-old-lace font-extralight text-[3vh]/[2.8vh] md:text-[8vh]/[7vh] lg:text-[4vw] w-[80%] md:w-[50%]\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<div class=\"flex w-[80%] md:w-[50%]\"><div class=\"grow relative w-full\"><hr class=\"text-old-lace w-full absolute bottom-[50%]\"></div><img src=\"/static/img/bird-white.svg\" class=\"size-[30vw] md:size-[12vw] mx-[4vw] md:mx-[1vw]\"><div class=\"grow relative w-full\"><hr class=\"text-old-lace w-full absolute bottom-[50%]\"></div></div><div class=\"text-center items-center font-pinyon text-old-lace font-extralight text-[3vh]/[2.8vh] md:text-[8vh]/[7vh] lg:text-[4vw] w-[80%] md:w-[50%]\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var23 string
-			templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(feedbackMessage(success))
+			var templ_7745c5c3_Var24 string
+			templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinStringErrs(feedbackMessage(success))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 237, Col: 29}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 277, Col: 29}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</div><hr class=\"text-old-lace w-[80%] md:w-[50%] mt-[4vh] md:mt-[2vw]\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</div><hr class=\"text-old-lace w-[80%] md:w-[50%] mt-[4vh] md:mt-[2vw]\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -688,7 +728,7 @@ func Feedback(success bool) templ.Component {
 		templ_7745c5c3_Err = components.Card(components.CardConfig{
 			ID:         "feedback",
 			Background: "bg-exotic-skin",
-		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var22), templ_7745c5c3_Buffer)
+		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var23), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -698,10 +738,10 @@ func Feedback(success bool) templ.Component {
 
 func feedbackMessage(success bool) string {
 	if !success {
-		return "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta"
+		return homeCopy.Feedback.Failure
 	}
 
-	return "Grazie di cuore per condividere con noi un momento così importante <3"
+	return homeCopy.Feedback.Success
 }
 
 var _ = templruntime.GeneratedTemplate

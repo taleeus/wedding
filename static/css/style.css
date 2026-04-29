@@ -298,7 +298,7 @@
     --color-white: #fff;
     --spacing: 0.25rem;
     --breakpoint-sm: 40rem;
-    --breakpoint-md: 48rem;
+    --breakpoint-md: 54rem;
     --breakpoint-lg: 64rem;
     --breakpoint-xl: 80rem;
     --breakpoint-2xl: 96rem;
@@ -759,8 +759,8 @@
     @media (width >= 40rem) {
       max-width: 40rem;
     }
-    @media (width >= 48rem) {
-      max-width: 48rem;
+    @media (width >= 54rem) {
+      max-width: 54rem;
     }
     @media (width >= 64rem) {
       max-width: 64rem;
@@ -822,9 +822,6 @@
   }
   .mb-\[1\.5vh\] {
     margin-bottom: 1.5vh;
-  }
-  .mb-\[1\.5vw\] {
-    margin-bottom: 1.5vw;
   }
   .mb-\[1vh\] {
     margin-bottom: 1vh;
@@ -3226,177 +3223,177 @@
     }
   }
   .md\:top-\[3vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       top: 3vw;
     }
   }
   .md\:top-\[6vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       top: 6vh;
     }
   }
   .md\:right-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       right: calc(var(--spacing) * 0);
     }
   }
   .md\:right-\[2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       right: 2vw;
     }
   }
   .md\:right-\[4vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       right: 4vw;
     }
   }
   .md\:-bottom-\[14vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       bottom: calc(14vh * -1);
     }
   }
   .md\:-bottom-\[14vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       bottom: calc(14vw * -1);
     }
   }
   .md\:bottom-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       bottom: calc(var(--spacing) * 0);
     }
   }
   .md\:left-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       left: calc(var(--spacing) * 0);
     }
   }
   .md\:m-\[1\.5vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin: 1.5vw;
     }
   }
   .md\:mx-\[1vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-inline: 1vw;
     }
   }
   .md\:my-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-block: calc(var(--spacing) * 0);
     }
   }
   .md\:mt-\[1vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-top: 1vh;
     }
   }
   .md\:mt-\[2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-top: 2vw;
     }
   }
   .md\:mr-\[1vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-right: 1vw;
     }
   }
   .md\:mb-\[0\.3vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-bottom: 0.3vh;
     }
   }
   .md\:mb-\[1\.5vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-bottom: 1.5vh;
     }
   }
   .md\:mb-\[1vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-bottom: 1vh;
     }
   }
   .md\:mb-\[2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       margin-bottom: 2vw;
     }
   }
   .md\:size-\[1\.8vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 1.8vw;
       height: 1.8vw;
     }
   }
   .md\:size-\[12vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 12vw;
       height: 12vw;
     }
   }
   .md\:size-\[20vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 20vw;
       height: 20vw;
     }
   }
   .md\:size-\[90vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 90vh;
       height: 90vh;
     }
   }
   .md\:size-full {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 100%;
       height: 100%;
     }
   }
   .md\:h-\[40vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       height: 40vh;
     }
   }
   .md\:h-full {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       height: 100%;
     }
   }
   .md\:w-\[45vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 45vw;
     }
   }
   .md\:w-\[50\%\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 50%;
     }
   }
   .md\:w-\[70\%\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 70%;
     }
   }
   .md\:w-\[80\%\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 80%;
     }
   }
   .md\:w-full {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       width: 100%;
     }
   }
   .md\:basis-2\/5 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       flex-basis: calc(2 / 5 * 100%);
     }
   }
   .md\:basis-3\/5 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       flex-basis: calc(3 / 5 * 100%);
     }
   }
   .md\:scale-100 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       --tw-scale-x: 100%;
       --tw-scale-y: 100%;
       --tw-scale-z: 100%;
@@ -3404,206 +3401,206 @@
     }
   }
   .md\:rotate-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       rotate: 0deg;
     }
   }
   .md\:grid-cols-2 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   .md\:flex-row {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       flex-direction: row;
     }
   }
   .md\:gap-y-\[1\.2vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       row-gap: 1.2vh;
     }
   }
   .md\:border-r-\[0\.15vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       border-right-style: var(--tw-border-style);
       border-right-width: 0.15vw;
     }
   }
   .md\:p-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding: calc(var(--spacing) * 0);
     }
   }
   .md\:p-\[1\.5vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding: 1.5vw;
     }
   }
   .md\:p-\[2\.5vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding: 2.5vw;
     }
   }
   .md\:p-\[2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding: 2vw;
     }
   }
   .md\:px-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-inline: calc(var(--spacing) * 0);
     }
   }
   .md\:px-\[1\.5vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-inline: 1.5vw;
     }
   }
   .md\:px-\[3vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-inline: 3vw;
     }
   }
   .md\:px-\[4vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-inline: 4vw;
     }
   }
   .md\:px-\[6vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-inline: 6vw;
     }
   }
   .md\:py-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-block: calc(var(--spacing) * 0);
     }
   }
   .md\:py-\[1vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-block: 1vh;
     }
   }
   .md\:py-\[2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-block: 2vw;
     }
   }
   .md\:py-\[4vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-block: 4vw;
     }
   }
   .md\:py-\[5vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-block: 5vh;
     }
   }
   .md\:pb-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       padding-bottom: calc(var(--spacing) * 0);
     }
   }
   .md\:text-\[2vw\]\/\[2\.2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 2vw;
       line-height: 2.2vw;
     }
   }
   .md\:text-\[8vh\]\/\[7vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 8vh;
       line-height: 7vh;
     }
   }
   .md\:text-sm {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: var(--text-sm);
       line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
   .md\:text-\[1\.2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 1.2vw;
     }
   }
   .md\:text-\[1\.5vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 1.5vw;
     }
   }
   .md\:text-\[1\.8vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 1.8vw;
     }
   }
   .md\:text-\[1vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 1vw;
     }
   }
   .md\:text-\[2\.2vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 2.2vh;
     }
   }
   .md\:text-\[2\.5vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 2.5vh;
     }
   }
   .md\:text-\[2\.5vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 2.5vw;
     }
   }
   .md\:text-\[2\.8vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 2.8vh;
     }
   }
   .md\:text-\[2vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 2vw;
     }
   }
   .md\:text-\[3vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 3vw;
     }
   }
   .md\:text-\[4vh\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 4vh;
     }
   }
   .md\:text-\[4vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 4vw;
     }
   }
   .md\:text-\[5vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 5vw;
     }
   }
   .md\:text-\[7vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 7vw;
     }
   }
   .md\:text-\[10vw\] {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       font-size: 10vw;
     }
   }
   .md\:opacity-0 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       opacity: 0%;
     }
   }
   .md\:opacity-100 {
-    @media (width >= 48rem) {
+    @media (width >= 54rem) {
       opacity: 100%;
     }
   }
@@ -3626,6 +3623,11 @@
   .lg\:h-full {
     @media (width >= 64rem) {
       height: 100%;
+    }
+  }
+  .lg\:w-\[45vw\] {
+    @media (width >= 64rem) {
+      width: 45vw;
     }
   }
   .lg\:px-\[1vw\] {

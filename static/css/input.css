@@ -26,6 +26,8 @@
 }
 
 @theme {
+    --breakpoint-md: 54rem;
+
     --font-aboreto: "Aboreto", sans-serif;
     --font-fleur-de-leah: "FleurDeLeah", serif;
     --font-opensans: "OpenSans", sans-serif;
