@@ -14,7 +14,7 @@ import (
 var dburl = "libsql://$TURSO_DATABASE_URL?authToken=$TURSO_AUTH_TOKEN"
 
 func main() {
-	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		AddSource: true,
 		Level:     slog.LevelInfo,
 	})))
