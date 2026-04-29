@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/taleeus/wedding/web"
 	"github.com/taleeus/wedding/web/components"
+	"os"
 	"strings"
 )
 
@@ -60,7 +61,7 @@ var homeCopy = HomeCopy{
 	GiftDescription: `Il regalo più bello è la vostra presenza. Se desiderate
 	contribuire al nostro viaggio di nozze in Giappone, potete farlo
 	tramite bonifico bancario.`,
-	IBAN: "IT03 E032 6822 3000 5246 1053 270",
+	IBAN: os.Getenv("IBAN"),
 	Feedback: FeedbackCopy{
 		Success: "Grazie di cuore per condividere con noi un momento così importante <3",
 		Failure: "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta",
