@@ -9,6 +9,8 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/taleeus/wedding/internal/db"
 	"github.com/taleeus/wedding/internal/server"
+	"github.com/taleeus/wedding/web/components"
+	"github.com/taleeus/wedding/web/pages"
 )
 
 var dburl = "libsql://$TURSO_DATABASE_URL?authToken=$TURSO_AUTH_TOKEN"
@@ -40,7 +42,48 @@ func main() {
 	}
 
 	slog.Info("🚀 starting server", "port", port)
-	if err := http.ListenAndServe(":"+port, server.New(dbconn)); err != nil {
+	if err := http.ListenAndServe(":"+port, server.New(dbconn, copy)); err != nil {
 		log.Fatal(err)
 	}
+}
+
+var copy = pages.HomeCopy{
+	HeroLabel: "Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.",
+	InfoChips: []pages.InfoChip{{
+		Title:   "QUANDO",
+		Content: "Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.",
+	}, {
+		Title: "DOVE",
+		Content: `La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
+		<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
+			Località Montalfeo, 9, 27052 Montalfeo PV
+		</a>`,
+	}, {
+		Title:   "DRESS CODE",
+		Content: "Vestitevi come volete magari non di bianco grazie",
+	}},
+	TimelineCells: []components.CellConfig{{
+		Time:        "15:00",
+		Description: "Inizio cerimonia",
+	}, {
+		Time:        "17:00",
+		Description: "Aperitivo",
+	}, {
+		Time:        "19:00",
+		Description: "Cena",
+	}, {
+		Time:        "20:00",
+		Description: "Taglio torta",
+	}, {
+		Time:        "22:00",
+		Description: "Festa",
+	}},
+	GiftDescription: `Il regalo più bello è la vostra presenza. Se desiderate
+	contribuire al nostro viaggio di nozze in Giappone, potete farlo
+	tramite bonifico bancario.`,
+	IBAN: os.Getenv("IBAN"),
+	Feedback: pages.FeedbackCopy{
+		Success: "Grazie di cuore per condividere con noi un momento così importante <3",
+		Failure: "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta",
+	},
 }

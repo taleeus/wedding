@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"github.com/taleeus/wedding/web"
 	"github.com/taleeus/wedding/web/components"
-	"os"
 	"strings"
 )
 
@@ -35,48 +34,15 @@ type FeedbackCopy struct {
 	Failure string
 }
 
-var homeCopy = HomeCopy{
-	HeroLabel: "Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.",
-	InfoChips: []InfoChip{{
-		Title:   "QUANDO",
-		Content: "Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.",
-	}, {
-		Title: "DOVE",
-		Content: `La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
-		<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
-			Località Montalfeo, 9, 27052 Montalfeo PV
-		</a>`,
-	}, {
-		Title:   "DRESS CODE",
-		Content: "Vestitevi come volete magari non di bianco grazie",
-	}},
-	TimelineCells: []components.CellConfig{{
-		Time:        "15:00",
-		Description: "Inizio cerimonia",
-	}, {
-		Time:        "17:00",
-		Description: "Aperitivo",
-	}, {
-		Time:        "19:00",
-		Description: "Cena",
-	}, {
-		Time:        "20:00",
-		Description: "Taglio torta",
-	}, {
-		Time:        "22:00",
-		Description: "Festa",
-	}},
-	GiftDescription: `Il regalo più bello è la vostra presenza. Se desiderate
-	contribuire al nostro viaggio di nozze in Giappone, potete farlo
-	tramite bonifico bancario.`,
-	IBAN: os.Getenv("IBAN"),
-	Feedback: FeedbackCopy{
-		Success: "Grazie di cuore per condividere con noi un momento così importante <3",
-		Failure: "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta",
-	},
+func (feedback FeedbackCopy) Compute(success bool) string {
+	if !success {
+		return feedback.Failure
+	}
+
+	return feedback.Success
 }
 
-func Home() templ.Component {
+func Home(copy HomeCopy) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -113,15 +79,15 @@ func Home() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = Hero().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = Hero(copy.HeroLabel).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = Info().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = Info(copy.InfoChips...).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = Timeline().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = Timeline(copy.TimelineCells...).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -129,7 +95,7 @@ func Home() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = Gift().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = Gift(copy.GiftDescription, copy.IBAN).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -151,7 +117,7 @@ func Home() templ.Component {
 	})
 }
 
-func Hero() templ.Component {
+func Hero(label string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -189,9 +155,9 @@ func Hero() templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(homeCopy.HeroLabel)
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(label)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 101, Col: 24}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 67, Col: 11}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
@@ -238,7 +204,7 @@ func Hero() templ.Component {
 	})
 }
 
-func Info() templ.Component {
+func Info(chips ...InfoChip) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -275,7 +241,7 @@ func Info() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			for _, chip := range homeCopy.InfoChips {
+			for _, chip := range chips {
 				templ_7745c5c3_Var9 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 					templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 					templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
@@ -295,7 +261,7 @@ func Info() templ.Component {
 					var templ_7745c5c3_Var10 string
 					templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(chip.Title)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 126, Col: 99}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 92, Col: 99}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 					if templ_7745c5c3_Err != nil {
@@ -313,7 +279,7 @@ func Info() templ.Component {
 				})
 				templ_7745c5c3_Err = components.Chip(components.ChipConfig{
 					Background: "bg-white",
-					Basis:      fmt.Sprintf("basis-1/%d", len(homeCopy.InfoChips)),
+					Basis:      fmt.Sprintf("basis-1/%d", len(chips)),
 				}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var9), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
@@ -336,7 +302,7 @@ func Info() templ.Component {
 	})
 }
 
-func Timeline() templ.Component {
+func Timeline(cells ...components.CellConfig) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -373,7 +339,7 @@ func Timeline() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			for _, cell := range homeCopy.TimelineCells {
+			for _, cell := range cells {
 				templ_7745c5c3_Err = components.Cell(cell).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
@@ -540,7 +506,7 @@ func RSVP() templ.Component {
 	})
 }
 
-func Gift() templ.Component {
+func Gift(description, iban string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -578,9 +544,9 @@ func Gift() templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var18 string
-			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(homeCopy.GiftDescription)
+			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 231, Col: 30}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 197, Col: 17}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
@@ -591,9 +557,9 @@ func Gift() templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var19 string
-			templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(homeCopy.IBAN)
+			templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(iban)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 236, Col: 91}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 202, Col: 82}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 			if templ_7745c5c3_Err != nil {
@@ -624,7 +590,7 @@ func Gift() templ.Component {
 			templ_7745c5c3_Err = components.Button(components.ButtonConfig{
 				Callback: "navigator.clipboard.writeText",
 				XOnClick: "src = '/static/img/icons/check.svg'",
-			}, strings.ReplaceAll(homeCopy.IBAN, " ", "")).Render(templ.WithChildren(ctx, templ_7745c5c3_Var20), templ_7745c5c3_Buffer)
+			}, strings.ReplaceAll(iban, " ", "")).Render(templ.WithChildren(ctx, templ_7745c5c3_Var20), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -674,7 +640,7 @@ func Footer() templ.Component {
 	})
 }
 
-func Feedback(success bool) templ.Component {
+func Feedback(copy FeedbackCopy, success bool) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -712,9 +678,9 @@ func Feedback(success bool) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var24 string
-			templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinStringErrs(feedbackMessage(success))
+			templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinStringErrs(copy.Compute(success))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 278, Col: 29}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/pages/home.templ`, Line: 244, Col: 26}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
 			if templ_7745c5c3_Err != nil {
@@ -735,14 +701,6 @@ func Feedback(success bool) templ.Component {
 		}
 		return nil
 	})
-}
-
-func feedbackMessage(success bool) string {
-	if !success {
-		return homeCopy.Feedback.Failure
-	}
-
-	return homeCopy.Feedback.Success
 }
 
 var _ = templruntime.GeneratedTemplate

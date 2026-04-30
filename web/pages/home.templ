@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/taleeus/wedding/web"
 	"github.com/taleeus/wedding/web/components"
-	"os"
 	"strings"
 )
 
@@ -27,61 +26,28 @@ type FeedbackCopy struct {
 	Failure string
 }
 
-var homeCopy = HomeCopy{
-	HeroLabel: "Vi invitano a condividere la gioia del loro matrimonio il 17 ottobre 2026.",
-	InfoChips: []InfoChip{{
-		Title:   "QUANDO",
-		Content: "Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.",
-	}, {
-		Title: "DOVE",
-		Content: `La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
-		<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
-			Località Montalfeo, 9, 27052 Montalfeo PV
-		</a>`,
-	}, {
-		Title:   "DRESS CODE",
-		Content: "Vestitevi come volete magari non di bianco grazie",
-	}},
-	TimelineCells: []components.CellConfig{{
-		Time:        "15:00",
-		Description: "Inizio cerimonia",
-	}, {
-		Time:        "17:00",
-		Description: "Aperitivo",
-	}, {
-		Time:        "19:00",
-		Description: "Cena",
-	}, {
-		Time:        "20:00",
-		Description: "Taglio torta",
-	}, {
-		Time:        "22:00",
-		Description: "Festa",
-	}},
-	GiftDescription: `Il regalo più bello è la vostra presenza. Se desiderate
-	contribuire al nostro viaggio di nozze in Giappone, potete farlo
-	tramite bonifico bancario.`,
-	IBAN: os.Getenv("IBAN"),
-	Feedback: FeedbackCopy{
-		Success: "Grazie di cuore per condividere con noi un momento così importante <3",
-		Failure: "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta",
-	},
+func (feedback FeedbackCopy) Compute(success bool) string {
+	if !success {
+		return feedback.Failure
+	}
+
+	return feedback.Success
 }
 
-templ Home() {
+templ Home(copy HomeCopy) {
 	@web.Layout("Angelica & Alessandro") {
 		<div x-data="{ responded: false }">
-			@Hero()
-			@Info()
-			@Timeline()
+			@Hero(copy.HeroLabel)
+			@Info(copy.InfoChips...)
+			@Timeline(copy.TimelineCells...)
 			@RSVP()
-			@Gift()
+			@Gift(copy.GiftDescription, copy.IBAN)
 			@Footer()
 		</div>
 	}
 }
 
-templ Hero() {
+templ Hero(label string) {
 	@components.Card(components.CardConfig{
 		ID:         "hero",
 		Background: "bg-old-lace",
@@ -98,7 +64,7 @@ templ Hero() {
 		</div>
 		<div class="w-[85%] md:w-[50%] border-y-[0.2vh] border-exotic-skin py-[2vh] md:py-[1vh] my-[2vh] flex items-center justify-center">
 			<div class="w-full md:w-[70%] text-center text-cherry-oak font-pinyon text-[2.8vh] md:text-[2vw]/[2.2vw] text-wrap">
-				{ homeCopy.HeroLabel }
+				{ label }
 			</div>
 		</div>
 		@components.Button(components.ButtonConfig{
@@ -111,17 +77,17 @@ templ Hero() {
 	}
 }
 
-templ Info() {
+templ Info(chips ...InfoChip) {
 	@components.Card(components.CardConfig{
 		ID:         "info",
 		Background: "bg-old-lace",
 	}) {
 		<h2 class="text-exotic-skin text-[2.5vh] md:text-[3vw] lg:text-[5vw] mb-[2vh] font-aboreto">INFORMAZIONI SULL'EVENTO</h2>
 		<div class="w-[60%] md:w-[80%] flex flex-col md:flex-row">
-			for _, chip := range homeCopy.InfoChips {
+			for _, chip := range chips {
 				@components.Chip(components.ChipConfig{
 					Background: "bg-white",
-					Basis:      fmt.Sprintf("basis-1/%d", len(homeCopy.InfoChips)),
+					Basis:      fmt.Sprintf("basis-1/%d", len(chips)),
 				}) {
 					<h3 class="text-exotic-skin text-[2.5vh] md:text-[2.5vw] mb-[1.5vh] font-aboreto">{ chip.Title }</h3>
 					@templ.Raw(chip.Content)
@@ -134,7 +100,7 @@ templ Info() {
 	}
 }
 
-templ Timeline() {
+templ Timeline(cells ...components.CellConfig) {
 	@components.Card(components.CardConfig{
 		ID:         "timeline",
 		Background: "bg-exotic-skin",
@@ -144,7 +110,7 @@ templ Timeline() {
 				<h2 class="text-old-lace text-[2.5vh] md:text-[5vw] font-aboreto">TIMELINE</h2>
 			</span>
 			<div class="md:basis-2/5 h-fit lg:h-full grid grid-cols-1 place-items-stretch gap-[2vh]">
-				for _, cell := range homeCopy.TimelineCells {
+				for _, cell := range cells {
 					@components.Cell(cell)
 				}
 			</div>
@@ -219,7 +185,7 @@ templ RSVP() {
 	}
 }
 
-templ Gift() {
+templ Gift(description, iban string) {
 	@components.Card(components.CardConfig{
 		ID:         "gift",
 		Background: "bg-old-lace",
@@ -228,12 +194,12 @@ templ Gift() {
 			<h3 class="text-[1.5vh] md:text-[2.8vh] mb-[1.5vh] font-aboreto">LISTA NOZZE</h3>
 			<h2 class="text-[2.5vh] md:text-[4vh] mb-[1.5vh] font-aboreto">IL NOSTRO VIAGGIO</h2>
 			<div class="md:mb-[1.5vh] text-[2vh] md:text-[2.2vh] py-[2vh] md:py-0 md:w-[80%] lg:w-[45vw]">
-				{ homeCopy.GiftDescription }
+				{ description }
 			</div>
 			<h4 class="text-[2vh] md:text-[2.8vh] mb-[1vh]">COORDINATE BANCARIE</h4>
 			<div class="p-[3vh] md:p-[2vw] bg-white w-full md:w-[45vw] rounded-md mb-[2vh] md:mb-[2vw]">
 				<h5 class="text-[2vh] md:text-[2.8vh] mb-[1vh]">IBAN</h5>
-				<div class="text-[2vh] md:text-[2.5vh] text-black font-medium mb-[1vh]">{ homeCopy.IBAN }</div>
+				<div class="text-[2vh] md:text-[2.5vh] text-black font-medium mb-[1vh]">{ iban }</div>
 				<div class="text-[1.5vh] md:text-[2.5vh]">Intestato ad Alessandro Tagliani o Angelica Seiberl</div>
 			</div>
 			<h4 class="text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]">CAUSALE</h4>
@@ -243,7 +209,7 @@ templ Gift() {
 				@components.Button(components.ButtonConfig{
 					Callback: "navigator.clipboard.writeText",
 					XOnClick: "src = '/static/img/icons/check.svg'",
-				}, strings.ReplaceAll(homeCopy.IBAN, " ", "")) {
+				}, strings.ReplaceAll(iban, " ", "")) {
 					<img :src="src" class="mr-[2vw] md:mr-[1vw] md:size-[1.8vw]"/>
 					COPIA IBAN
 				}
@@ -260,7 +226,7 @@ templ Footer() {
 	</section>
 }
 
-templ Feedback(success bool) {
+templ Feedback(copy FeedbackCopy, success bool) {
 	@components.Card(components.CardConfig{
 		ID:         "feedback",
 		Background: "bg-exotic-skin",
@@ -275,16 +241,8 @@ templ Feedback(success bool) {
 			</div>
 		</div>
 		<div class="text-center items-center font-pinyon text-old-lace font-extralight text-[3vh]/[2.8vh] md:text-[8vh]/[7vh] lg:text-[4vw] w-[80%] md:w-[50%]">
-			{ feedbackMessage(success) }
+			{ copy.Compute(success) }
 		</div>
 		<hr class="text-old-lace w-[80%] md:w-[50%] mt-[4vh] md:mt-[2vw]"/>
 	}
-}
-
-func feedbackMessage(success bool) string {
-	if !success {
-		return homeCopy.Feedback.Failure
-	}
-
-	return homeCopy.Feedback.Success
 }
