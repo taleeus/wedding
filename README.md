@@ -1,4 +1,8 @@
 # Wedding 👰🏻‍♀️🤵🏻
+
+## Credits
+**[Beatrice Balduzzi](https://www.linkedin.com/in/beatrice-balduzzi-57b523261/)**: UI & UX Design
+
 ## Getting started
 1. Install Golang
 2. Install just
