@@ -565,7 +565,7 @@ func Gift(description, iban string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div><div class=\"text-[1.5vh] md:text-[2.5vh]\">Intestato ad Alessandro Tagliani o Angelica Seiberl</div></div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]\">CAUSALE</h4><div class=\"text-[2vh] md:text-[2.8vh] font-semibold\">\"Matrimonio Angi e Ale\"</div><div class=\"grow\"></div><div x-data=\"{src: '/static/img/icons/copy.svg'}\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div><div class=\"text-[1.5vh] md:text-[2.5vh]\">Intestatario: Alessandro Tagliani, Angelica Seiberl</div></div><h4 class=\"text-[2vh] md:text-[2.8vh] mb-[1vh] md:mb-[0.3vh]\">CAUSALE</h4><div class=\"text-[2vh] md:text-[2.8vh] font-semibold\">\"Matrimonio Angi e Ale\"</div><div class=\"grow\"></div><div x-data=\"{src: '/static/img/icons/copy.svg'}\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

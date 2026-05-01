@@ -54,25 +54,25 @@ var copy = pages.HomeCopy{
 		Content: "Il matrimonio inizierà alle ore 15 del 17 ottobre 2026.",
 	}, {
 		Title: "DOVE",
-		Content: `La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo presso
+		Content: `La cerimonia e il ricevimento si terranno presso la Rocca di Montalfeo.
 		<a class="underline text-exotic-skin hover:text-cherry-oak" target="_blank" href="https://maps.app.goo.gl/hccg9SgnqfpMR4Ka9">
 			Località Montalfeo, 9, 27052 Montalfeo PV
 		</a>`,
 	}, {
 		Title:   "DRESS CODE",
-		Content: "Vestitevi come volete magari non di bianco grazie",
+		Content: "Sentitevi liberi di esprimere il vostro stile con abiti eleganti nei colori che amate di più.",
 	}},
 	TimelineCells: []components.CellConfig{{
 		Time:        "15:00",
 		Description: "Inizio cerimonia",
 	}, {
-		Time:        "17:00",
+		Time:        "16:30",
 		Description: "Aperitivo",
 	}, {
 		Time:        "19:00",
 		Description: "Cena",
 	}, {
-		Time:        "20:00",
+		Time:        "21:30",
 		Description: "Taglio torta",
 	}, {
 		Time:        "22:00",
@@ -83,7 +83,7 @@ var copy = pages.HomeCopy{
 	tramite bonifico bancario.`,
 	IBAN: os.Getenv("IBAN"),
 	Feedback: pages.FeedbackCopy{
-		Success: "Grazie di cuore per condividere con noi un momento così importante <3",
+		Success: "Grazie di cuore per condividere con noi un momento così importante!",
 		Failure: "Si è verificato un errore :( riprova o contattaci direttamente per comunicarci la tua risposta",
 	},
 }
