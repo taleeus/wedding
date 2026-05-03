@@ -434,7 +434,7 @@ func RSVP() templ.Component {
 			templ_7745c5c3_Err = components.FormField(components.FormFieldConfig{
 				ColSpan:     1,
 				ID:          "guests",
-				Label:       "Hai accompagnatori?",
+				Label:       "Indica chi verrà con te",
 				Type:        "text",
 				Placeholder: "Lascia vuoto se vieni da solo/a",
 			}).Render(ctx, templ_7745c5c3_Buffer)
