@@ -21,6 +21,15 @@ func SaveRSVP(copy pages.FeedbackCopy) func(w http.ResponseWriter, r *http.Reque
 			Notes:   nullable(sanitize(r.FormValue("notes"))),
 		}
 
+		if rsvp.Phone == "" || rsvp.Name == "" || rsvp.Surname == "" {
+			slog.WarnContext(r.Context(), "Invalid RSVP",
+				"rsvp", rsvp,
+			)
+
+			http.Error(w, "mind your own business, useless bot", http.StatusBadRequest)
+			return
+		}
+
 		success := true
 		slog.InfoContext(r.Context(), "Saving response",
 			"rsvp", rsvp,
@@ -31,7 +40,7 @@ func SaveRSVP(copy pages.FeedbackCopy) func(w http.ResponseWriter, r *http.Reque
 				"err", err.Error(),
 			)
 
-			http.Error(w, err.Error(), http.StatusBadRequest)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			success = false
 		}
 

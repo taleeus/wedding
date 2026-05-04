@@ -28,6 +28,22 @@ func (config FormFieldConfig) ComputeLabel() string {
 	return config.Label
 }
 
+func (config FormFieldConfig) ComputePattern() string {
+	if !config.Mandatory {
+		return ""
+	}
+
+	return `(.|\s)*\S(.|\s)*`
+}
+
+func (config FormFieldConfig) ComputeTitle() string {
+	if !config.Mandatory {
+		return ""
+	}
+
+	return "Campo obbligatorio"
+}
+
 templ FormField(config FormFieldConfig) {
 	<div class={ config.ComputeSpan() }>
 		<label for={ config.ID } class="block text-[1.2vh] md:text-[1vw] text-label-text uppercase">{ config.ComputeLabel() }</label>
@@ -39,6 +55,8 @@ templ FormField(config FormFieldConfig) {
 				autocomplete={ config.Autocomplete }
 				placeholder={ config.Placeholder }
 				required?={ config.Mandatory }
+				pattern={ config.ComputePattern() }
+				title={ config.ComputeTitle() }
 				class={
 					"block",
 					"w-full",
