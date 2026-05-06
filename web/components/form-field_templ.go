@@ -38,7 +38,7 @@ func (config FormFieldConfig) ComputeLabel() string {
 
 func (config FormFieldConfig) ComputePattern() string {
 	if !config.Mandatory {
-		return ""
+		return `[\s\S]*`
 	}
 
 	return `(.|\s)*\S(.|\s)*`
